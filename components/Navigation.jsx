@@ -10,6 +10,10 @@ const links = [
     label: "Login",
     route: "/login",
   },
+  {
+    label: "Images",
+    route: "/images",
+  }
 ];
 
 export function Navigation() {

@@ -1,3 +1,5 @@
+import { Navigation } from "./components/Navigation";
+
 export const metadata = {
   title: "Data Lake App",
   description: "Data Lake management app",
@@ -10,7 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head></head>
       <body>
-        <h1>Hola</h1>
+        <header>
+          <Navigation />
+        </header>
         {children}
       </body>
     </html>

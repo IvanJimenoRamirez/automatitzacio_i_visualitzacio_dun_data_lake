@@ -12,7 +12,7 @@
 body {
     margin: 0px;
     padding: 10px;
-    font-family: Popins, sans-serif;
+    font-family: var(--font-poppins);
     font-size: 16px;
     background-color: var(--color-quinary);
     color: var(--color-primary);

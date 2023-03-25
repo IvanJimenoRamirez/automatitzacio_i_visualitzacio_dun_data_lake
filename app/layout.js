@@ -1,6 +1,8 @@
 import { Navigation } from "../components/Navigation";
 // Global styles
 import "../styles/globals.css";
+//Fonts
+import { font } from "../components/fonts/fonts.jsx";
 
 export const metadata = {
   title: "Data Lake App",
@@ -11,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={font.variable}>
       <head></head>
       <body>
         <header>

@@ -1,0 +1,73 @@
+/* GLOBAL STYLES FOR THE APPLICATION */
+
+/* Global variables */
+:root {
+    --color-primary: #1D3557;
+    --color-secondary: #457B9D;
+    --color-tertiary: #A8DADC;
+    --color-quaternary: #E63946;
+    --color-quinary: #F1FAEE;
+}
+
+body {
+    margin: 0px;
+    padding: 10px;
+    font-family: Popins, sans-serif;
+    font-size: 16px;
+    background-color: var(--color-quinary);
+    color: var(--color-primary);
+}
+
+/* Global tags */
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+h5 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+h6 {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Global classes */
+
+.warning {
+    color: var(--color-quaternary);
+}
+
+

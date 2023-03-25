@@ -1,4 +1,6 @@
 import { Navigation } from "./components/Navigation";
+// Global styles
+import "../styles/globals.css";
 
 export const metadata = {
   title: "Data Lake App",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./Navigation.module.css";
 
 const links = [
   {
@@ -13,8 +14,8 @@ const links = [
 
 export function Navigation() {
     return (
-          <nav>
-            <ul>
+          <nav className={styles.navbar}>
+            <ul className={styles.navigation}>
               {links.map(({ label, route }) => (
                 <li key={route}>
                   <Link href={route}> {label}</Link>

@@ -8,7 +8,7 @@ const links = [
   },
   {
     label: "Login",
-    route: "/login",
+    route: "/auth/login",
   },
   {
     label: "Images",

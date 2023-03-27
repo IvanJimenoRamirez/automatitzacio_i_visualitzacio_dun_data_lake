@@ -1,4 +1,6 @@
 import { Navigation } from "../components/Navigation";
+import Provider from "./Provider";
+
 // Global styles
 import "../styles/globals.css";
 //Fonts
@@ -16,10 +18,12 @@ export default function RootLayout({ children }) {
     <html lang="en" className={font.variable}>
       <head></head>
       <body>
-        <header>
-          <Navigation />
-        </header>
-        {children}
+        <Provider>
+          <header>
+            <Navigation />
+          </header>
+          {children}
+        </Provider>
       </body>
     </html>
   );

@@ -7,6 +7,8 @@
     --color-tertiary: #A8DADC;
     --color-quaternary: #E63946;
     --color-quinary: #F1FAEE;
+
+    --navbarWidth: 75px;
 }
 
 body {
@@ -14,7 +16,7 @@ body {
     padding: 10px;
     font-family: var(--font-poppins);
     font-size: 16px;
-    background-color: var(--color-quinary);
+    background-color: #F5F8FC;
     color: var(--color-primary);
 }
 

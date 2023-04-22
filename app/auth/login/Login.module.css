@@ -7,6 +7,17 @@
     align-items: center;
 }
 
+.error {
+    color: #fff;
+    background-color:var(--color-quaternary);
+    padding: 10px;
+    position:absolute;
+    top: 50px;
+    margin: 0 auto;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
 .loginWrapper {
     display: flex;
     flex-direction: column;

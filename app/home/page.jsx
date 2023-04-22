@@ -1,6 +1,7 @@
 import styles from "./Home.module.css";
 import { Zone } from "../../components/Home/Zones/Zone";
 import { HomeTable } from "../../components/Home/Tables/HomeTable";
+
 export default function Home() {
     return (
         <div>

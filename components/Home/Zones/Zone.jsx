@@ -30,14 +30,18 @@ export function Zone({ name, description, id }) {
                     {statistics ? (
                     <div>
                         <table>
-                            <tr>
-                                <th>#Fonts</th>
-                                <th>#Metadata</th>
-                            </tr>
-                            <tr>
-                                <td>{statistics.getTotalSources()}</td>
-                                <td>{statistics.getTotalMetadataCount()}</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>#Fonts</th>
+                                    <th>#Metadata</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{statistics.getTotalSources()}</td>
+                                    <td>{statistics.getTotalMetadataCount()}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     ) : (

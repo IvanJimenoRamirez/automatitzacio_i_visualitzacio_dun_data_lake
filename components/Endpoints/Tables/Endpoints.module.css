@@ -132,6 +132,10 @@
     align-items: center;
 }
 
+.filtersWrapper p {
+    width: 95%;
+}
+
 /* Search filter */
 .searchWrapper {
     width: 90%;

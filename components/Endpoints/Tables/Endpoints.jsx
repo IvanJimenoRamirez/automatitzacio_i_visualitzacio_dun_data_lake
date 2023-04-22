@@ -105,8 +105,8 @@ export function Endpoints(type, id) {
         <div className={styles.endpointsWrapper}>
             <div className={styles.filtersContainer}>
                 <h4>Filtre</h4>
-                <p>Aplica una cerca sobre les operacions disponibles</p>
                 <div className={styles.filtersWrapper}>
+                    <p>Aplica una cerca sobre les operacions disponibles</p>
                     <div className={styles.searchWrapper} onClick={e => focusInputFilter( e.target )}>
                         <input id="searchInput" type="text" placeholder="Cerca" onChange={
                             e => setSearchFilter(e.target.value)

@@ -11,7 +11,7 @@ export default function Login () {
                     <span>
                         Benvingut/da a l'eina web de gestió del Data Lake
                     </span>
-                    <Form action={"/"} method={"POST"} className={styles.form}>
+                    <Form action={"/home"} method={"POST"} className={styles.form}>
                         <InputButton type="text" parentId="username" label="Usuari" name="username" className={styles.active} />
                         <InputButton type="password" parentId="password" label="Contrasenya" name="password" className={styles.active} />
                         <button type="submit">Inicia</button>

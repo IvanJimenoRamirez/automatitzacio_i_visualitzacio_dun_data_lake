@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import menuImage from "../../public/icons/menu.svg";
+import menuImage from "../../public/icons/navbar/menu.svg";
 
 export function NavbarButton({ navbarId, className }) {
     // This function is used to add the class "Active" to the parent of the button when the button is clicked
@@ -13,7 +13,7 @@ export function NavbarButton({ navbarId, className }) {
             parent.classList.remove(className);
         }
         else {
-            document.documentElement.style.setProperty("--navbarWidth", "250px");
+            document.documentElement.style.setProperty("--navbarWidth", "280px");
             parent.classList.add(className);
         }
     }

@@ -41,7 +41,20 @@ export class EndpointsDTO {
         console.log("Data received:", jsonData)
         this.endpoints = jsonData;
     }
+
+    /**
+     * Returns the endpoint with the given id.
+     * @param {Integer} id The id of the endpoint to find
+     * @returns the endpoint with the given id
+     */
+    findById(id) {
+        return this.endpoints.find(endpoint => endpoint.id === id)
+    }
     
+    /**
+     * Returns the number of endpoints.
+     * @returns the number of endpoints
+     */
     getNumberOfEndpoints() {
         return this.endpoints.length;
     }

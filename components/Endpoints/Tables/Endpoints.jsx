@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'
 
 // Styles
 import styles from './Endpoints.module.css'
@@ -15,6 +16,7 @@ import clickIcon from "../../../public/icons/filters/click.svg";
 import caretDownIcon from "../../../public/icons/caretDown.svg";
 
 export function Endpoints(type, id) {
+    const router = useRouter();
     
     const [endpoints, setEndpoints] = useState(false);
     const [isLoading, setLoading] = useState(false);
@@ -47,12 +49,16 @@ export function Endpoints(type, id) {
         }
     }
 
+    const handleSelectEndpoint = (key_id) => {
+        router.push(`/home/endpoint/${key_id}`);
+    }
+
     const endpointsList = filteredEndpoints && filteredEndpoints.getList().map((endpoint) => (
       <div id={endpoint.id} key={endpoint.id} className={styles.endpoint}>
           <div className={styles.endpointTitle} onClick={e => showDetails(e.target, endpoint.id)}>
             <p><strong>{endpoint.name}</strong>  - <span> {endpoint.route} </span></p>
             <Image className={styles.caretDown} src={caretDownIcon} alt="CaretDown" width={25} height={25}></Image>
-            <button>
+            <button onClick={e => handleSelectEndpoint(endpoint.id)}>
                 <span>Seleccionar</span>
                 <Image src={clickIcon} alt="Click" width={25} height={25}></Image>
             </button>

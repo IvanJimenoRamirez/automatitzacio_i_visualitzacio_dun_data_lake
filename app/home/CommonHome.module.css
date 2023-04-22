@@ -140,6 +140,9 @@
     margin-right: 60px;
     transition: all 0.25s ease-in-out;
     overflow: auto;
+    overflow-y: overlay;
+
+    padding-bottom: 50px;
 }
 
 .main::-webkit-scrollbar {

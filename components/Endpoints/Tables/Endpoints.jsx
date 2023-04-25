@@ -40,7 +40,7 @@ export function Endpoints(type, id) {
 
     const showDetails = (target, key_id) => {
         let endpointRow = document.getElementById(key_id);
-        if (endpointRow.querySelector(`.${styles.endpointTitle}`).querySelector("button") !== target) {
+        if (!endpointRow.querySelector(`.${styles.endpointTitle}`).querySelector("button").contains(target)) {
             let details = endpointRow.querySelector(`.${styles.endpointDetails}`);
             let caretDown = endpointRow.querySelector(`.${styles.caretDown}`);
             details.classList.toggle(styles.active);

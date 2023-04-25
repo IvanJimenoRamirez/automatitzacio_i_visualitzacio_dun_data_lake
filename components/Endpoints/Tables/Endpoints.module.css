@@ -60,6 +60,10 @@
     font-weight: 400;
 }
 
+.caretDown {
+    user-select: none;
+}
+
 .endpointTitle img.caretDown {
     transform: rotate(0deg);
     transition: transform 0.2s ease-in-out;

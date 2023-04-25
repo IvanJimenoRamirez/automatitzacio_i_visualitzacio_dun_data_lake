@@ -1,0 +1,97 @@
+.endpointWrapper {
+    width: 90%;
+    height: auto;
+
+    margin: 0 auto;
+    padding: 20px 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fff;
+
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*  Endpoint title */
+.endpointWrapper h4 {
+    text-align: center;
+}
+
+/*  Endpoint params */
+.endpointParams {
+    width: 100%;
+}
+.paramWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 200px);
+    margin: 0 auto;
+}
+.paramDescription {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.inputContainer {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputContainer input {
+    width: calc(100% - 50px);
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+}
+
+/*  Endpoint send */
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.buttonContainer button {
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+/*  Responsive */
+
+@media screen and (max-width: 768px) {
+    .paramWrapper {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .paramDescription {
+        width: 85%;
+    }
+    .inputContainer {
+        width: 85%;
+    }
+}

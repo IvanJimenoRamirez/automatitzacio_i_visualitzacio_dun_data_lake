@@ -1,0 +1,39 @@
+.projectsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    height: 100%;
+    width: 100%;
+
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.182);
+    border-radius: 5px;
+}
+
+.project {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 60%;
+    transition: height 0.2s ease-in-out;
+}
+
+.project a {
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 16px;
+
+    font-family: inherit;
+
+    position: absolute;
+    right: 20px;
+}

@@ -8,9 +8,11 @@ import { SignoutButton } from "../../components/Buttons/SignoutButton";
 
 // Icons
 import homeLogo from "../../public/icons/navbar/home.svg";
-import temporalLandingZone from "../../public/icons/navbar/temporalLandingZone.svg";
 import userLogo from "../../public/icons/navbar/user.svg";
-import powerLogo from "../../public/icons/navbar/power.svg"
+import temporalLandingZoneLogo from "../../public/icons/navbar/temporalLandingZone.svg";
+import landingZoneLogo from "../../public/icons/navbar/landingZone.svg"
+import formattedZoneLogo from "../../public/icons/navbar/formattedZone.svg"
+import projectsLogo from "../../public/icons/navbar/projects.svg"
 
 // Logos
 import upcLogo from "../../public/images/upcLogo.png";
@@ -20,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <body className={styles.body}>
             <header className={styles.header}>
-                <Image src={upcLogo} width={260} height={80} alt={"Universitat Politècnica de Catalunya. Barcelona Tech"}></Image>
+                <Image src={upcLogo} width={260} height={80} alt={"Universitat Politècnica de Catalunya. Barcelona Tech"} priority></Image>
             </header>
             <nav id="navbar" className={styles.nav}>
                 <div>
@@ -36,9 +38,33 @@ export default function RootLayout({ children }) {
                 </div>
                 <div>
                     <Link href="home/temporalLandingZone" >
-                        <Image src={temporalLandingZone} alt="TLZ" width={25} height={25}></Image>
+                        <Image src={temporalLandingZoneLogo} alt="TLZ" width={25} height={25}></Image>
                         <span>
                             Temporal Landing Zone
+                        </span>
+                    </Link>
+                </div>
+                <div>
+                    <Link href="home/landingZone" >
+                        <Image src={landingZoneLogo} alt="LZ" width={25} height={25}></Image>
+                        <span>
+                            Landing Zone
+                        </span>
+                    </Link>
+                </div>
+                <div>
+                    <Link href="home/formattedZone" >
+                        <Image src={formattedZoneLogo} alt="FZ" width={25} height={25}></Image>
+                        <span>
+                            Formatted Zone
+                        </span>
+                    </Link>
+                </div>
+                <div>
+                    <Link href="home/projects" >
+                        <Image src={projectsLogo} alt="Projects" width={25} height={25}></Image>
+                        <span>
+                            Projects
                         </span>
                     </Link>
                 </div>

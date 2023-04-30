@@ -20,7 +20,11 @@ export default function Login () {
 
         const res = await signIn('credentials', { username: username, password: password, redirect: false });
         if (res.status === 200) {
-            router.push('/home');
+            // Get the user requested page from the url (?p=page)
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('p');
+            if (page !== null) router.push(page);
+            else router.push("/home");
         } else {
             seterrorStatus(res.status);
             setTimeout(() => {

@@ -15,7 +15,7 @@ import searchIcon from "../../../public/icons/filters/search.svg";
 import clickIcon from "../../../public/icons/filters/click.svg";
 import caretDownIcon from "../../../public/icons/caretDown.svg";
 
-export function Endpoints(type, id) {
+export function Endpoints(params) {
     const router = useRouter();
     
     const [endpoints, setEndpoints] = useState(false);
@@ -28,7 +28,7 @@ export function Endpoints(type, id) {
     
     useEffect(() => {
         setLoading(true);
-        fetch("http://127.0.0.1:8000/DataLakeAPI/zones/temporalLandingZone/endpoints")
+        fetch("http://127.0.0.1:8000/DataLakeAPI/" + params.type + "/" + params.id + "/endpoints")
         .then((res) => res.json())
         .then((data) => {
           const endpointsDTO = new EndpointsDTO(data);
@@ -56,7 +56,7 @@ export function Endpoints(type, id) {
     const endpointsList = filteredEndpoints && filteredEndpoints.getList().map((endpoint) => (
       <div id={endpoint.id} key={endpoint.id} className={styles.endpoint}>
           <div className={styles.endpointTitle} onClick={e => showDetails(e.target, endpoint.id)}>
-            <p><strong>{endpoint.name}</strong>  - <span> {endpoint.route} </span></p>
+            <p><strong>{endpoint.route}</strong>  - <span> {endpoint.summary} </span></p>
             <Image className={styles.caretDown} src={caretDownIcon} alt="CaretDown" width={25} height={25}></Image>
             <button onClick={e => handleSelectEndpoint(endpoint.id)}>
                 <span>Seleccionar</span>
@@ -71,13 +71,13 @@ export function Endpoints(type, id) {
                   <br />
                   <strong>Endpoint:</strong> <span>{endpoint.route}</span> 
                   <br />
-                  <strong>Tipus d'operació:</strong> {endpoint.method}
+                  <strong>Tipus d'operació:</strong> {endpoint.method.toUpperCase()}
                   <br />
-                  <strong>Paràmetres:</strong>
+                  <strong>Paràmetres:</strong> {(endpoint.parameters.length == 0) ? "No hi ha paràmetres" : ""}
                   <ul>
                       {endpoint.parameters.map((parameter) => (
                           <li key={parameter.id}>
-                              {parameter.name} ({parameter.param_type}): {parameter.description}
+                              {parameter.name} ({parameter.type}): {parameter.description}
                           </li>
                       ))}
                   </ul>

@@ -76,7 +76,7 @@ export class EndpointsDTO {
         if (search === "") return this.endpoints
         // Filter any endpoint that contains the search string in any of its fields
         return this.endpoints.filter(endpoint => {
-            return endpoint.name.toLowerCase().includes(search.toLowerCase()) || endpoint.description.toLowerCase().includes(search.toLowerCase()) || endpoint.route.toLowerCase().includes(search.toLowerCase())
+            return endpoint.summary.toLowerCase().includes(search.toLowerCase()) || endpoint.description.toLowerCase().includes(search.toLowerCase()) || endpoint.route.toLowerCase().includes(search.toLowerCase())
         })
     }
 
@@ -104,7 +104,7 @@ export class EndpointsDTO {
         if (method === "any") return this.filterSearch(search)
         if (search === "") return this.filterMethod(method)
         return this.filterMethod(method).filter(endpoint => {
-            return endpoint.name.toLowerCase().includes(search.toLowerCase()) || endpoint.description.toLowerCase().includes(search.toLowerCase()) || endpoint.route.toLowerCase().includes(search.toLowerCase())
+            return endpoint.summary.toLowerCase().includes(search.toLowerCase()) || endpoint.description.toLowerCase().includes(search.toLowerCase()) || endpoint.route.toLowerCase().includes(search.toLowerCase())
         })
     }
 

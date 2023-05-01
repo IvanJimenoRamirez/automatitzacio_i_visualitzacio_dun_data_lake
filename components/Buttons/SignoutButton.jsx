@@ -18,7 +18,7 @@ export function SignoutButton() {
         <a href="#" onClick={e =>  handleSignOut()}>
             <Image src={powerLogo} alt="logOut" width={25} height={25}></Image>
             <span>
-                Tanca sessió
+                Sign out
             </span>
         </a>
     )

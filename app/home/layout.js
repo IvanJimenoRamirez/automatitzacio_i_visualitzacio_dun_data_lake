@@ -5,6 +5,8 @@ import styles from "./CommonHome.module.css";
 // Components
 import { NavbarButton } from "../../components/Buttons/NavbarButton";
 import { SignoutButton } from "../../components/Buttons/SignoutButton";
+import { AuthProvider } from "../../components/Home/AuthProvider"
+import { NavbarAdmin } from "../../components/Admin/NavbarAdmin";
 
 // Icons
 import homeLogo from "../../public/icons/navbar/home.svg";
@@ -32,7 +34,7 @@ export default function RootLayout({ children }) {
                     <Link href="/home" >
                         <Image src={homeLogo} alt="home" width={25} height={25}></Image>
                         <span>
-                            Inici
+                            Home
                         </span>
                     </Link>
                 </div>
@@ -69,19 +71,26 @@ export default function RootLayout({ children }) {
                     </Link>
                 </div>
                 <div>
-                    <Link href="auth/login" >
+                    <Link href="home/profile" >
                         <Image src={userLogo} alt="UserImage" width={25} height={25}></Image>
                         <span>
-                            Account
+                            Profile
                         </span>
                     </Link>
                 </div>
+
+                <AuthProvider>
+                    <NavbarAdmin/> 
+                </AuthProvider>
+
                 <div>
                     <SignoutButton />
                 </div>
             </nav>
             <main className={styles.main}>
-                {children}
+                <AuthProvider>
+                    {children}
+                </AuthProvider>
             </main>
         </body>
   );

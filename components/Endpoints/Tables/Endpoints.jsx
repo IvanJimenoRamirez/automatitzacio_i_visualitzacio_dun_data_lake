@@ -28,7 +28,7 @@ export function Endpoints(params) {
     
     useEffect(() => {
         setLoading(true);
-        fetch("http://127.0.0.1:8000/DataLakeAPI/" + params.type + "/" + params.id + "/endpoints")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${params.type}/${params.id}/endpoints`)
         .then((res) => res.json())
         .then((data) => {
           const endpointsDTO = new EndpointsDTO(data);

@@ -10,7 +10,7 @@ export default NextAuth({
         password: {  label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-            const res = await fetch(process.env.API_URL + '/DataLakeAPI/Authorization/Login', {
+            const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/DataLakeAPI/Authorization/Login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export default NextAuth({
                     token: data.access_token,
                     tokenType: data.token_type,
                     email: 'test@test.com',
-                    role: 'user'
+                    role: data.role
                 }
                 return user;
             }
@@ -36,26 +36,36 @@ export default NextAuth({
       }
     }),
   ],
-  callbacks: {
-    session: async (session, user) => {
-        if (user) {
-            session.user.id = user.id;
-            session.user.role = user.role;
-        }
-        return Promise.resolve(session);
-    },
-    jwt: async (token, user) => {
-        return Promise.resolve(token);
-    }
-  },
-  pages: {
-    signIn: '/auth/login',
-    error: '/auth/login',
-  },
   session: {
-    jwt: true,
+    strategy: "jwt",
+    maxAge: parseInt(process.env.JWT_MAX_AGE)
   },
-  jwt: {
-    secret: process.env.JWT_SECRET,
-  }
+  callbacks: {
+    async session({ session, token }) {
+      if (token) {
+        session.user = {
+          id: token.id,
+          name: token.name,
+          email: token.email,
+          role: token.role,
+        };
+        session.accessToken = token.accessToken;
+        session.tokenType = token.tokenType;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.role = user.role;
+        token.accessToken = user.token;
+        token.tokenType = user.tokenType;
+      }
+      return token;
+    },
+  },
+  secret: process.env.JWT_SECRET,
+
 });

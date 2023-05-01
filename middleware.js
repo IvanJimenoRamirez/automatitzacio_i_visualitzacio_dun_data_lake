@@ -2,9 +2,19 @@ import { NextResponse } from 'next/server'
 import {NextRequest} from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
+const adminRoutes = [
+    '/home/admin'
+]
+
 export async function middleware(req) {
     const session = await getToken({ req , secret: process.env.JWT_SECRET })
-    console.log("This is the session: ", session)
+
+    if (adminRoutes.includes(req.nextUrl.pathname) && session.role !== 1) {
+        let url = req.nextUrl.clone();
+        url.pathname = '/home';
+        return NextResponse.redirect(url);
+    }
+
     if (!session) {
         const requestedPage = (req.nextUrl.pathname === '' || req.nextUrl.pathname === '/') ? '/home' : req.nextUrl.pathname;
         const url = req.nextUrl.clone();

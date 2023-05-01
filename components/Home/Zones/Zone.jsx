@@ -10,7 +10,7 @@ export function Zone({ name, description, id }) {
 
     useEffect(() => {
         setLoading(true)
-        fetch("http://127.0.0.1:8000/DataLakeAPI/" + id + "/statistics")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${id}/statistics`)
           .then((res) => res.json())
           .then((data) => {
               const sources = new TLDStatisticsDTO(data);

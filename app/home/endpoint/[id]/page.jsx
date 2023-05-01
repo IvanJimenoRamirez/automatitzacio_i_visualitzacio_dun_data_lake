@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSession } from "next-auth/react"
+
+//Components
+import { Loader } from "../../../../components/loader";
 
 //Styles
 import styles from "./endpoint.module.css";
@@ -24,43 +28,13 @@ export default function Endpoint( { params }) {
 
     const {id} = params;
 
-    /* 
-    Endpoint example:
-        {
-            "id": 1,
-            "route": "/DataLakeAPI/temporalLandingZone/{source}/{file_name}/exists",
-            "project_id": null,
-            "method": "GET",
-            "zone_id": 1,
-            "description": "Comproba si un fitxer existeix per la font de dades indicada",
-            "summary": "Existeix fitxer",
-            "parameters": [
-                {
-                    "endpoint_id": 1,
-                    "name": "file_name",
-                    "description": "Nom del arxiu",
-                    "param_type": "path",
-                    "id": 1,
-                    "required": true
-                },
-                {
-                    "endpoint_id": 1,
-                    "name": "source",
-                    "description": "Nom de la font de dades",
-                    "param_type": "path",
-                    "id": 2,
-                    "required": true
-                }
-            ]
-        }
-    */
+    const { data: session, status } = useSession()
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/DataLakeAPI/endpoint/${id}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/endpoint/${id}`)
         .then((res) => res.json())
         .then((data) => {
             setEndpoint(data);
-            console.log(data)
             if (data.jobs && data.jobs.length > 0) setJobs(data.jobs[0]);
         });
     }, []);
@@ -132,11 +106,15 @@ export default function Endpoint( { params }) {
         // Merge the bodyParams and queryParams and pathParams
         const params = {...bodyParams, ...queryParams, ...pathParams};
 
+        // Toggle the loader
+        toggleLoader();
+
         // Send the request to the API
-        fetch(`http://localhost:8000/DataLakeAPI/schedule-endpoint/${endpointId}/${seconds}`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/schedule-endpoint/${endpointId}/${seconds}`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.NEXT_PUBLIC_API_KEY
             },
             body: JSON.stringify({
                 "start_date": scheduleTime,
@@ -146,28 +124,39 @@ export default function Endpoint( { params }) {
         .then((res) => res.json().then((data) => {
             showEndpointResult(data, res.status);
             setJobs(data);
-        }));
+        }))
+        .catch((error) => {
+            showEndpointResult(error, 500);
+        });
     }
 
     const runEndpoint = () => {
-        let endpointUrl = `http://localhost:8000${url}`;
+        toggleLoader();
+
+        let endpointUrl = `${process.env.NEXT_PUBLIC_API_URL + url}`;
+
         if (["PUT", "POST"].includes(endpoint.method)) {
             fetch(endpointUrl, {
                 method: endpoint.method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.accessToken}`
                 },
                 body: JSON.stringify(bodyParams)
             })
             .then((res) => res.json())
             .then((data) => {
-                showEndpointResult(data)
+                showEndpointResult(data, res.status)
+            })
+            .catch((error) => {
+                showEndpointResult(error, 500);
             });
         } else {
             fetch(endpointUrl, {
                 method: endpoint.method,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.accessToken}`
                 },
             })
             .then((res) => {
@@ -176,13 +165,18 @@ export default function Endpoint( { params }) {
                         showEndpointResult(data, res.status);
                     });
                 } else {
-                    console.error('Invalid JSON response:', res);
+                    showEndpointResult(res.statusText, res.status);
                 }
             })
             .catch((error) => {
-                console.error("Fetch error: ", error);
+                showEndpointResult(error, 500)
             });
         }
+    }
+
+    const toggleLoader = () => {
+        let loader = document.querySelector(`#loaderContainer`);
+        loader.classList.toggle(styles.hidden);
     }
 
     const showEndpointResult = (data, status) => {
@@ -224,7 +218,7 @@ export default function Endpoint( { params }) {
     }
 
     const handleDeleteJob = () => {
-        fetch(`http://localhost:8000/DataLakeAPI/schedule-endpoint/stop_job/${jobs.job_id}`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/schedule-endpoint/stop_job/${jobs.job_id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -245,6 +239,9 @@ export default function Endpoint( { params }) {
                         <p><strong>Segur que vols executar l'endpoint?</strong></p>
                     </div>
                     <div className={styles.modalBody}>
+                        <div id="loaderContainer" className={[styles.loader, styles.hidden].join(' ')}>
+                            <Loader></Loader>  
+                        </div>
                         <p><strong>URL: </strong> {url}</p>
                         <p><strong>Mètode: </strong> {endpoint && (
                             endpoint.method.toUpperCase()

@@ -10,7 +10,7 @@ export default function Projects() {
     let [projects, setProjects] = useState(false);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/DataLakeAPI/projects")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/projects`)
         .then((res) => res.json())
         .then((data) => {
             setProjects(data);

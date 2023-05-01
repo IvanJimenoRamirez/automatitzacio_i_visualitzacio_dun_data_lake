@@ -37,7 +37,7 @@ export default function Login () {
         <body className={styles.body}>
             {
                 errorStatus && 
-                <div id="error" className={styles.error}>Usuari o contrasenya incorrectes. Codi d'error: {errorStatus}</div>
+                <div id="error" className={styles.error}>Incorrect user or password. Error code: {errorStatus}</div>
             }
             <div className={styles.loginWrapper}>
                 <div className={styles.loginContainer}>

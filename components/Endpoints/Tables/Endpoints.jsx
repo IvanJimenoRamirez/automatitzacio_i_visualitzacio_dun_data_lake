@@ -15,11 +15,11 @@ import searchIcon from "../../../public/icons/filters/search.svg";
 import clickIcon from "../../../public/icons/filters/click.svg";
 import caretDownIcon from "../../../public/icons/caretDown.svg";
 
-export function Endpoints(params) {
+export function Endpoints({dict, id, type, lang}) {
     const router = useRouter();
     
     const [endpoints, setEndpoints] = useState(false);
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
     
     // use state filters...
     const [searchFilter, setSearchFilter] = useState("");
@@ -28,7 +28,7 @@ export function Endpoints(params) {
     
     useEffect(() => {
         setLoading(true);
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${params.type}/${params.id}/endpoints`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${type}/${id}/endpoints`)
         .then((res) => res.json())
         .then((data) => {
           const endpointsDTO = new EndpointsDTO(data);
@@ -50,7 +50,7 @@ export function Endpoints(params) {
     }
 
     const handleSelectEndpoint = (key_id) => {
-        router.push(`/home/endpoint/${key_id}`);
+        router.push(`${lang}/home/endpoint/${key_id}`);
     }
 
     const endpointsList = filteredEndpoints && filteredEndpoints.getList().map((endpoint) => (
@@ -59,7 +59,7 @@ export function Endpoints(params) {
             <p><strong>{endpoint.route}</strong>  - <span> {endpoint.summary} </span></p>
             <Image className={styles.caretDown} src={caretDownIcon} alt="CaretDown" width={25} height={25}></Image>
             <button onClick={e => handleSelectEndpoint(endpoint.id)}>
-                <span>Seleccionar</span>
+                <span>{dict.commons.select}</span>
                 <Image src={clickIcon} alt="Click" width={25} height={25}></Image>
             </button>
           </div>
@@ -69,11 +69,11 @@ export function Endpoints(params) {
               </div>
               <div>
                   <br />
-                  <strong>Endpoint:</strong> <span>{endpoint.route}</span> 
+                  <strong>{dict.commons.endpointTable.endpoint}:</strong> <span>{endpoint.route}</span> 
                   <br />
-                  <strong>Tipus d'operació:</strong> {endpoint.method.toUpperCase()}
+                  <strong>{dict.commons.endpointTable.method}:</strong> {endpoint.method.toUpperCase()}
                   <br />
-                  <strong>Paràmetres:</strong> {(endpoint.parameters.length == 0) ? "No hi ha paràmetres" : ""}
+                  <strong>{dict.commons.endpointTable.parameters}:</strong> {(endpoint.parameters.length == 0) ? dict.commons.endpointTable.noParametersRequired : ""}
                   <ul>
                       {endpoint.parameters.map((parameter) => (
                           <li key={parameter.id}>
@@ -110,18 +110,18 @@ export function Endpoints(params) {
     return (
         <div className={styles.endpointsWrapper}>
             <div className={styles.filtersContainer}>
-                <h4>Filtre</h4>
+                <h4>{dict.commons.endpointTable.filter}</h4>
                 <div className={styles.filtersWrapper}>
-                    <p>Aplica una cerca sobre les operacions disponibles</p>
+                    <p>{dict.commons.endpointTable.filterDescription}</p>
                     <div className={styles.searchWrapper} onClick={e => focusInputFilter( e.target )}>
-                        <input id="searchInput" type="text" placeholder="Cerca" onChange={
+                        <input id="searchInput" type="text" placeholder={dict.commons.endpointTable.search} onChange={
                             e => setSearchFilter(e.target.value)
                         } />
                         <Image src={searchIcon} alt="SearchIcon" width={25} height={25} onClick={e => handleSearchFilter()} ></Image>
                     </div>
                     <div className={styles.filterSelectors}>
                         <div>
-                            <label htmlFor="method">Mètode</label>
+                            <label htmlFor="method">{dict.commons.endpointTable.method}</label>
                             <select name="method" id="method" onChange={
                                 e => setMethodFilter(e.target.value)
                             }>
@@ -133,13 +133,21 @@ export function Endpoints(params) {
                         </div>
                     </div>
                     <button onClick={e => filterData()}>
-                        Aplica Filtres
+                    {dict.commons.endpointTable.applyFilters}
                     </button>
                 </div>
             </div>
             <div className={styles.endpointsContainer}>
-                <h4>Llistat d'operacions disponibles</h4>
-                {endpointsList ? endpointsList : (isLoading ? <p>Loading...</p> : <p>No s'han trobat operacions.</p>)}
+                <h4>{dict.commons.endpointTable.listOperations}</h4>
+                {
+                endpointsList ? 
+                    endpointsList : 
+                    (isLoading ? 
+                        <p>{dict.commons.loading}</p> 
+                        : 
+                        <p>{dict.commons.endpointTable.noOperations}.</p>
+                    )
+                }
             </div>
         </div>
     )    

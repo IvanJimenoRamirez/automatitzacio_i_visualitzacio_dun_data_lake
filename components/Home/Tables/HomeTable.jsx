@@ -4,7 +4,7 @@ import styles from "./HomeTable.module.css";
 import { useState, useEffect } from "react";
 import {TLDStatisticsDTO} from "../../../payloads/response/TLDStatisticsDTO";
 
-export function HomeTable({ id }) {
+export function HomeTable({ id, col1, col2, loading }) {
     const [statistics, setStatistics] = useState(null);
     const [isLoading, setLoading] = useState(false);
   
@@ -23,14 +23,14 @@ export function HomeTable({ id }) {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Nom de la font de dades</th>
-            <th>Total de metadades</th>
+            <th>{col1}</th>
+            <th>{col2}</th>
           </tr>
         </thead>
         <tbody>
           {isLoading ? (
             <tr>
-              <td colSpan="2">Loading...</td>
+              <td colSpan="2">{loading}</td>
             </tr>
           ) : (
             statistics &&

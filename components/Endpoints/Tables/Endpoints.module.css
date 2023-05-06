@@ -19,7 +19,7 @@
     height: 100%;
     width: 65%;
 
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.182);
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
     border-radius: 5px;
 }
 
@@ -56,11 +56,12 @@
 }
 
 .endpointTitle span {
-    color: #848F9F;
+    color: var(--color-grey);
     font-weight: 400;
 }
 
 .caretDown {
+    filter: var(--dark-filter);
     user-select: none;
 }
 
@@ -82,14 +83,14 @@
     border-radius: 15px;
     border: none;
     background-color: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
     font-size: 16px;
 
     font-family: inherit;
 }
 
 .endpointTitle button span {
-    color: #fff;
+    color: var(--color-white);
 }
 .endpointTitle button img {
     display: none;
@@ -121,7 +122,7 @@
 
     text-align: center;
 
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.182);
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
     border-radius: 5px;
 }
 .filtersContainer h4 {
@@ -152,6 +153,8 @@
     border: 1px solid var(--color-primary);
     border-radius: 15px;
 
+    background-color: #fff;
+
     cursor: text;
 }
 
@@ -165,7 +168,7 @@
 }
 
 .searchWrapper input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-white) inset !important;
     background-color: transparent !important;
   }
 
@@ -215,7 +218,7 @@
     border-radius: 15px;
     border: none;
     background-color: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
 
     font-family: inherit;
 }

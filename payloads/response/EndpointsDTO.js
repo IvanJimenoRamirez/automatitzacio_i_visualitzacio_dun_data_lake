@@ -38,7 +38,6 @@ export class EndpointsDTO {
      * @param {*} jsonData the json data to be parsed
      */
     constructor(jsonData) {
-        console.log("Data received:", jsonData)
         this.endpoints = jsonData;
     }
 

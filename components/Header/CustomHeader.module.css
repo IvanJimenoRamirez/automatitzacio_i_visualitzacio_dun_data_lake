@@ -1,0 +1,31 @@
+.switchButton {
+    display: inline-block;
+}
+.switchButton .switchButtonCheckbox {
+    display: none;
+}
+.switchButton .switchButtonLabel {
+    background-color: #fe5e41;
+    width: 35px;
+    height: 20px;
+    border-radius: 20px;
+    display: inline-block;
+    position: relative;
+}
+.switchButton .switchButtonLabel:before {
+    transition: .2s;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fdffff;
+    content: '';
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 0px 1px #000;
+}
+.switchButton .switchButtonCheckbox:checked + .switchButtonLabel {
+    background-color: #00a878;
+}
+.switchButton .switchButtonCheckbox:checked + .switchButtonLabel:before {
+    transform: translateX(15px);
+}

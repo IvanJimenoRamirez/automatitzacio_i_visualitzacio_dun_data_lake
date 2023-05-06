@@ -1,0 +1,108 @@
+.body {
+    background-color: var(--color-body);
+    width: 98%;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    color: var(--color-white);
+    background-color:var(--color-quaternary);
+    padding: 10px;
+    position:absolute;
+    top: 50px;
+    margin: 0 auto;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.loginWrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 325px;
+    width: 650px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    font-size: 24px;;
+}
+
+.loginWrapper h1 {
+    margin: 0;
+}
+
+
+.form {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.form div {
+    width: 300px;
+    position: relative;
+}
+
+.form div label {
+    position: absolute;
+    color: var(--color-secondary);
+    transition: all 0.3s ease;
+    top: 25%;
+    left: 0.75rem;
+    font-size: 18px;
+    user-select: none;
+}
+
+.form div input {
+    width: 100%;
+    padding: 0.75rem 0.75rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.form div input:focus {
+    outline-color: var(--color-primary);
+}
+
+.form > div.active input {
+    border: 1px solid var(--color-secondary);
+}
+
+.form > div.active label {
+    background-color: var(--color-white);
+    border-radius: 5px;
+    top: -9px;
+    left: 0.5rem;
+    font-size: 14px;
+}
+
+.form button {
+    cursor: pointer;
+    width: 150px;
+    padding: 0.75rem 1.5rem;
+    margin-left: 25px;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 18px;
+}
+
+.form button:hover {
+    background-color: var(--color-secondary);
+}
+
+@media screen and (max-width: 613px) {
+    .loginWrapper {
+        padding: 20px 5px;
+    }
+}

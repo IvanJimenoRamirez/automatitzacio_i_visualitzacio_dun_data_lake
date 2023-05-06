@@ -1,0 +1,169 @@
+{
+    "navbar": {
+        "home": "Home",
+        "tlz": "Temporal Landing Zone",
+        "lz": "Landing Zone",
+        "fz": "Formatted Zone",
+        "projects": "Projects",
+        "profile": "Profile",
+        "admin": "Admin",
+        "logout": "Logout"
+    },
+    "header": {
+        "language": "Select language"
+    },
+    "page": {
+        "login": {
+            "title": "Login",
+            "description": "Welcome to the Data Lake management application",
+            "user": "Username",
+            "password": "Password",
+            "start": "Start",
+            "error": "Incorrect username or password. Status code: "
+        },
+        "home": {
+            "title": "Data Lake management",
+            "zones": {
+                "name": "Zones",
+                "description": "Data lake zones. Summary of contents",
+                "tlz": {
+                    "name": "Temporal Landing Zone",
+                    "description": "Some statistics about the Temporal Landing Zone"
+                },
+                "lz": {
+                    "name": "Landing Zone",
+                    "description": "Some statistics about the Landing Zone"
+                },
+                "fz": {
+                    "name": "Formatted Zone",
+                    "description": "Some statistics about the Formatted Zone"
+                }
+            },
+            "sources": {
+                "name": "Data sources",
+                "description": "Registered data sources",
+                "columns": {
+                    "name": "Name",
+                    "providedData": "Provided Data"
+                }
+            }
+        },
+        "temporalLandingZone": {
+            "title": "Temporal Landing Zone",
+            "description": "Set of operations available in the Temporal Landing Zone"
+        },
+        "landingZone": {
+            "title": "Landing Zone",
+            "description": "Set of operations available in the Landing Zone"
+        },
+        "formattedZone": {
+            "title": "Formatted Zone",
+            "description": "Set of operations available in the Formatted Zone"
+        },
+        "projects": {
+            "title": "Projects",
+            "description": "Projects in the Data Lake",
+            "projectsList": "Projects list"
+        },
+        "profile": {
+            "title": "Profile",
+            "subtitle": "User profile",
+            "description": "User profile and settings",
+            "info": "User information",
+            "userData": {
+                "name":"Name",
+                "email": "Email",
+                "role": "Role",
+                "password": "Password",
+                "changePassword": "Change password"
+            },
+            "modal": {
+                "oldPassword": "Actual password",
+                "newPassword": "New password",
+                "repeatNewPassword": "Repeat new password",
+                "changePassword": "Change password"
+            }
+        },
+        "admin": {
+            "title": "Admin",
+            "subtitle": "Administration Pannel",
+            "description": "Manage Data Lake authentication",
+            "add": "Add",
+            "delete": "Delete",
+            "edit": "Edit",
+            "copy": "Copy",
+            "manageUsers": {
+                "edit": "Edit user",
+                "create": "Create user",
+                "delete": "Delete user",
+                "deleteConfirmation": "Are you sure you want to delete the user: ",
+                "title": "Manage users",
+                "list": "Users list",
+                "new": "New user"
+            },
+            "manageApiKeys": {
+                "delete": "Delete API Key",
+                "deleteConfirmation": "Are you sure you want to delete the API Key: ",
+                "title": "Manage API Keys",
+                "list": "API Keys list ",
+                "new": "New API Key",
+                "copySuccess": "API Key copied to clipboard"
+            },
+            "endpointConfig": {
+                "title": "Endpoint configuration",
+                "description": "Reloads the endpoints available on the web page based on the endpoints available in the current version of Data Lake",
+                "refresh": "Reload endpoints",
+                "success": "The endpoints have been reloaded successfully",
+                "error": "An error has occurred while reloading the endpoints. Status code: "
+            }
+        },
+        "endpoint": {
+            "title": "Execute the endpoint",
+            "description": "Description",
+            "configuration": "Configure the required parameters",
+            "execute": {
+                "execute":"Execute",
+                "confirm": "Are you sure you want to execute the endpoint?",
+                "method": "Method",
+                "schedule": "Schedule execution",
+                "missingDate": "You must select a date and hour to schedule the execution",
+                "startDate": "Start date",
+                "repeat": "Repeat every (seconds)",
+                "response": "Response to the request"
+            },
+            "parameterErrors": {
+                "parameter": "The parameter: ",
+                "numeric": " must be numeric",
+                "required": " is required"
+            },
+            "activeJob": "Job running"
+        }
+    },
+    "commons": {
+        "success": "Success",
+        "name": "Name",
+        "action": "Action",
+        "noContent": "No content",
+        "response": "Response",
+        "error": "Error",
+        "status": "Status",
+        "result": "Result",
+        "cancel": "Cancel",
+        "change": "Change",
+        "select": "Select",
+        "loading": "Loading...",
+        "operations": "Operations",
+        "endpointTable": {
+            "listOperations": "List of available operations",
+            "filter": "Filter",
+            "filterDescription": "Apply a search on the available operations",
+            "search": "Search",
+            "method": "Method",
+            "applyFilters": "Apply Filters",
+            "noOperations": "No operations found",
+            "endpoint": "Endpoint",
+            "parameters": "Parameters",
+            "noParametersRequired": "No parameters required"
+        }
+    }
+}

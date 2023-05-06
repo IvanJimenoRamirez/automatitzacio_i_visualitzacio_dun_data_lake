@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react';
 import lockIcon from '../../public/icons/navbar/lock.svg';
 
 
-export function NavbarAdmin () {
+export function NavbarAdmin ( { adminTranslation, lang }) {
   const { data: session, status } = useSession();
 
   return (
@@ -18,10 +18,10 @@ export function NavbarAdmin () {
       {
         status === 'authenticated' && session.user.role === 1 ?
         <div>
-            <Link href="home/admin" >
-                <Image src={lockIcon} alt="UserImage" width={25} height={25}></Image>
+            <Link href={`${lang}/home/admin`} >
+                <Image src={lockIcon} alt={adminTranslation} width={25} height={25}></Image>
                 <span>
-                    Admin
+                    {adminTranslation}
                 </span>
             </Link>
         </div>

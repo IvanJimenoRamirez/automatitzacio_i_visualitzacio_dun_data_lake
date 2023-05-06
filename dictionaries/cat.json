@@ -1,0 +1,169 @@
+{
+    "navbar": {
+        "home": "Inici",
+        "tlz": "Temporal Landing Zone",
+        "lz": "Landing Zone",
+        "fz": "Formatted Zone",
+        "projects": "Projectes",
+        "profile": "Perfil",
+        "admin": "Administració",
+        "logout": "Tanca la sessió"
+    },
+    "header": {
+        "language": "Selecciona l'idioma"
+    },
+    "page": {
+        "login": {
+            "title": "Iniciar sessió",
+            "description": "Benvingut/da a l'eina de gestió web del Data Lake",
+            "user": "Usuari",
+            "password": "Contrasenya",
+            "start": "Iniciar",
+            "error": "Usuari o contrasenya incorrectes. Codi d'error: "
+        },
+        "home": {
+            "title": "Administració del Data Lake",
+            "zones": {
+                "name": "Zones",
+                "description": "Zones del Data Lake. Resum de continguts",
+                "tlz": {
+                    "name": "Temporal Landing Zone",
+                    "description": "Estadístiques de la Temporal Landing Zone"
+                },
+                "lz": {
+                    "name": "Landing Zone",
+                    "description": "Estadístiques de la Landing Zone"
+                },
+                "fz": {
+                    "name": "Formatted Zone",
+                    "description": "Estadístiques de la Formatted Zone"
+                }
+            },
+            "sources": {
+                "name": "Fonts de dades",
+                "description": "Fonts de dades registrades",
+                "columns": {
+                    "name": "Nom",
+                    "providedData": "Dades subministrades"
+                }
+            }
+        },
+        "temporalLandingZone": {
+            "title": "Temporal Landing Zone",
+            "description": "Conjunt d'operacions disponibles a la Temporal Landing Zone"
+        },
+        "landingZone": {
+            "title": "Landing Zone",
+            "description": "Conjunt d'operacions disponibles a la Landing Zone"
+        },
+        "formattedZone": {
+            "title": "Formatted Zone",
+            "description": "Conjunt d'operacions disponibles a la Formatted Zone"
+        },
+        "projects": {
+            "title": "Projectes",
+            "description": "Conjunt de projectes disponibles al Data Lake",
+            "projectsList": "Llistat de projectes disponibles"
+        },
+        "profile": {
+            "title": "Perfil",
+            "subtitle": "Perfil d'usuari",
+            "description": "Perfil del usuari",
+            "info": "Informació del usuari i configuració",
+            "userData": {
+                "name":"Nom",
+                "email": "Correu",
+                "role": "Rol",
+                "password": "Contrasenya",
+                "changePassword": "Canviar contrasenya"
+            },
+            "modal": {
+                "oldPassword": "Contrasenya actual",
+                "newPassword": "Nova contrasenya",
+                "repeatNewPassword": "Repeteix la nova contrasenya",
+                "changePassword": "Canviar contrasenya"
+            }
+        },
+        "admin": {
+            "title": "Administrador",
+            "subtitle": "Panell d'administració",
+            "description": "Gestió de l'autenticació al Data Lake",
+            "add": "Afegir",
+            "delete": "Eliminar",
+            "edit": "Editar",
+            "copy": "Copiar",
+            "manageUsers": {
+                "edit": "Editar usuari",
+                "create": "Afegir usuari",
+                "delete": "Eliminar usuari",
+                "deleteConfirmation": "Estàs segur/a que vols eliminar l'usuari: ",
+                "title": "Gestió d'usuaris",
+                "list": "Llistat d'usuaris",
+                "new": "Nou usari"
+            },
+            "manageApiKeys": {
+                "delete": "Eliminar API Key",
+                "deleteConfirmation": "Estàs segur/a que vols eliminar la API Key: ",
+                "title": "Gestiona les API Keys",
+                "list": "Llistat d'API Keys",
+                "new": "Nova API Key",
+                "copySuccess": "API Key copiada al porta-retalls"
+            },
+            "endpointConfig": {
+                "title": "Configuració d'endpoints",
+                "description": "Recarrega els endpoints disponibles a la pàgina web en funció dels endpoints disponibles a la versió actual del Data Lake",
+                "refresh": "Recarregar endpoints",
+                "success": "Els endpoints s'han recarregat correctament",
+                "error": "No s'han pogut recarregar els endpoints. Estat de l'error: "
+            }
+        },
+        "endpoint": {
+            "title": "Executa l'endpoint",
+            "description": "Descripció",
+            "configuration": "Configuració dels paràmetres requerits",
+            "execute": {
+                "execute":"Executar",
+                "confirm": "Estàs segur/a de voler executar l'endpoint?",
+                "method": "Mètode",
+                "schedule": "Programar execució",
+                "missingDate": "Has de seleccionar una data i hora per programar l'execució",
+                "startDate": "Data d'inici",
+                "repeat": "Repetir cada (segons)",
+                "response": "Resposta de la sol·licitud"
+            },
+            "parameterErrors": {
+                "parameter": "El paràmetre: ",
+                "numeric": " ha de ser numèric",
+                "required": " és requerit"
+            },
+            "activeJob": "Execució en procés"
+        }
+    },
+    "commons": {
+        "success": "Èxit",
+        "name": "Nom",
+        "action": "Acció",
+        "noContent": "Sense contingut",
+        "response": "Resposta",
+        "error": "Error",
+        "status": "Estat",
+        "result": "Resultat",
+        "cancel": "Cancel·lar",
+        "change": "Canviar",
+        "select": "Seleccionar",
+        "loading": "Carregant...",
+        "operations": "Operacions",
+        "endpointTable": {
+            "listOperations": "Llistat d'operacions disponibles",
+            "filter": "Filtre",
+            "filterDescription": "Aplica una cerca sobre les operacions disponibles",
+            "search": "Cerca",
+            "method": "Mètode",
+            "applyFilters": "Aplica filtres",
+            "noOperations": "No s'han trobat operacions",
+            "endpoint": "Endpoint",
+            "parameters": "Paràmetres",
+            "noParametersRequired": "No es requereixen paràmetres"
+        }
+    }
+}

@@ -8,7 +8,25 @@
     --color-quaternary: #E63946;
     --color-quinary: #F1FAEE;
 
+    --color-white: #fff;
+    --navbar-hover: #D3E3FD;
+
+    --color-hard-grey: #333;
+    --color-grey: #848F9F;
+    --color-low-grey: #ddd;
+
+    --color-body: #F5F8FC;
+
+    --box-shadow-color: rgba(0, 0, 0, 0.182);
+
+    --color-success: #3dcf35;
+
+    --white-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%);
+    --dark-filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%);
+    
     --navbarWidth: 75px;
+
+    --modal-background: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -16,7 +34,7 @@ body {
     padding: 10px;
     font-family: var(--font-poppins);
     font-size: 16px;
-    background-color: #F5F8FC;
+    background-color: var(--color-body);
     color: var(--color-primary);
 }
 

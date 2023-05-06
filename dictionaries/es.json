@@ -1,0 +1,169 @@
+{
+    "navbar": {
+        "home": "Inicio",
+        "tlz": "Temporal Landing Zone",
+        "lz": "Landing Zone",
+        "fz": "Formatted Zone",
+        "projects": "Proyectos",
+        "profile": "Perfil",
+        "admin": "Administración",
+        "logout": "Cierra sesión"
+    },
+    "header": {
+        "language": "Seleccionar idioma"
+    },
+    "page": {
+        "login": {
+            "title": "Iniciar sesión",
+            "description": "Bienvenido/a a la herramienta de gestión web del Data Lake",
+            "user": "Usuario",
+            "password": "Contraseña",
+            "start": "Iniciar",
+            "error": "Usuario o contraseña incorrectos. Código de error: "
+        },
+        "home": {
+            "title": "Administración del Data Lake",
+            "zones": {
+                "name": "Zonas",
+                "description": "Zonas del Data Lake. Resumen de contenidos",
+                "tlz": {
+                    "name": "Temporal Landing Zone",
+                    "description": "Estadísticas de la Temporal Landing Zone"
+                },
+                "lz": {
+                    "name": "Landing Zone",
+                    "description": "Estadísticas de la Landing Zone"
+                },
+                "fz": {
+                    "name": "Formatted Zone",
+                    "description": "Estadísticas de la Formatted Zone"
+                }
+            },
+            "sources": {
+                "name": "Fuentes de datos",
+                "description": "Fuentes de datos registradas",
+                "columns": {
+                    "name": "Nombre",
+                    "providedData": "Datos suministrados"
+                }
+            }
+        },
+        "temporalLandingZone": {
+            "title": "Temporal Landing Zone",
+            "description": "Conjunto de operaciones en la Temporal Landing Zone"
+        },
+        "landingZone": {
+            "title": "Landing Zone",
+            "description": "Conjunto de operaciones disponibles en la Landing Zone"
+        },
+        "formattedZone": {
+            "title": "Formatted Zone",
+            "description": "Conjunto de operaciones disponibles en la Formatted Zone"
+        },
+        "projects": {
+            "title": "Proyectos",
+            "description": "Proyectos disponibles en el Data Lake",
+            "projectsList": "Listado de proyectos"
+        },
+        "profile": {
+            "title": "Perfil",
+            "subtitle": "Perfil de usuario",
+            "description": "Perfil del usuario",
+            "info": "Información del usuario y configuración",
+            "userData": {
+                "name":"Nombre",
+                "email": "Correo",
+                "role": "Rol",
+                "password": "Contraseña",
+                "changePassword": "Cambiar contraseña"
+            },
+            "modal": {
+                "oldPassword": "Contraseña actual",
+                "newPassword": "Nueva contraseña",
+                "repeatNewPassword": "Repite la nueva contraseña",
+                "changePassword": "Cambiar contraseña"
+            }
+        },
+        "admin": {
+            "title": "Administrador",
+            "subtitle": "Panel de administración",
+            "description": "Gestiona la autenticación al Data Lake",
+            "add": "Añadir",
+            "delete": "Eliminar",
+            "edit": "Editar",
+            "copy": "Copiar",
+            "manageUsers": {
+                "edit": "Editar usuario",
+                "create": "Crear usuario",
+                "delete": "Eliminar usuario",
+                "deleteConfirmation": "¿Estás seguro/a de que quieres eliminar al usuario: ",
+                "title": "Gestión de usuarios",
+                "list": "Listado de usuarios",
+                "new": "Nuevo usuario"
+            },
+            "manageApiKeys": {
+                "delete": "Eliminar API Key",
+                "deleteConfirmation": "¿Estás seguro de que quieres eliminar la API Key: ",
+                "title": "Gestión de API Keys",
+                "list": "Listado de API Keys",
+                "new": "Nueva API Key",
+                "copySuccess": "API Key copiada al portapapeles"
+            },
+            "endpointConfig": {
+                "title": "Configuración de endpoints",
+                "description": "Recarga los endpoints disponibles en la página web en función de los endpoints disponibles en la versión actual del Data Lake",
+                "refresh": "Recargar endpoints",
+                "success": "Los endpoints se han recargado correctamente",
+                "error": "Ha ocurrido un error al recargar los endpoints. Código de eror: "
+            }
+        },
+        "endpoint": {
+            "title": "Ejecutar el endpoint",
+            "description": "Descripción",
+            "configuration": "Configuración de los parámetros requeridos",
+            "execute": {
+                "execute":"Ejecutar",
+                "confirm": "¿Estás seguro de querer ejecutar el endpoint?",
+                "method": "Método",
+                "schedule": "Programar ejecución",
+                "missingDate": "Has de indicar una fecha y hora para programar la ejecución",
+                "startDate": "Fecha de inicio",
+                "repeat": "Repetir cada (segundos)",
+                "response": "Respuesta de la solicitud"
+            },
+            "parameterErrors": {
+                "parameter": "El parámetro: ",
+                "numeric": " ha de ser numérico",
+                "required": " es obligatorio"
+            },
+            "activeJob": "Ejecución en proceso"
+        }
+    },
+    "commons": {
+        "success": "Éxito",
+        "name": "Nombre",
+        "action": "Acción",
+        "noContent": "Sin contenido",
+        "response": "Respuesta",
+        "error": "Error",
+        "status": "Estado",
+        "result": "Resultado",
+        "cancel": "Cancelar",
+        "change": "Cambiar",
+        "select": "Seleccionar",
+        "loading": "Cargando...",
+        "operations": "Operaciones",
+        "endpointTable": {
+            "listOperations": "Listado de operaciones disponibles",
+            "filter": "Filtro",
+            "filterDescription": "Aplica una búsqueda sobre las operaciones disponibles",
+            "search": "Buscar",
+            "method": "Método",
+            "applyFilters": "Aplicar filtros",
+            "noOperations": "No se han encontrado operaciones",
+            "endpoint": "Endpoint",
+            "parameters": "Parmámetros",
+            "noParametersRequired": "No se requieren parámetros"
+        }
+    }
+}

@@ -24,9 +24,7 @@ export function LanguageSelector({ dict }) {
   const lightTheme = {
     "--color-primary": "#1D3557",
     "--color-secondary": "#457B9D",
-    "--color-tertiary": "#A8DADC",
     "--color-quaternary": "#E63946",
-    "--color-quinary": "#F1FAEE",
     "--color-white": "#fff",
     "--navbar-hover": "#D3E3FD",
     "--color-hard-grey": "#333",
@@ -44,9 +42,7 @@ export function LanguageSelector({ dict }) {
   const darkTheme = {
     "--color-primary": "#FFF",
     "--color-secondary": "#A8DADC",
-    "--color-tertiary": "#457B9D",
     "--color-quaternary": "#E63946",
-    "--color-quinary": "#1D3557",
     "--color-white": "#1E2029",
     "--navbar-hover": "#242630",
     "--color-hard-grey": "#333",

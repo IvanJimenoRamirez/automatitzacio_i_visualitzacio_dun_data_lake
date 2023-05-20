@@ -65,6 +65,10 @@
             "description": "Conjunt de projectes disponibles al Data Lake",
             "projectsList": "Llistat de projectes disponibles"
         },
+        "project": {
+            "name": "Projecte",
+            "description": "Conjunt d'operacions disponibles al projecte"
+        },
         "profile": {
             "title": "Perfil",
             "subtitle": "Perfil d'usuari",
@@ -157,6 +161,7 @@
         "select": "Seleccionar",
         "loading": "Carregant...",
         "operations": "Operacions",
+        "list": "Llistat",
         "endpointTable": {
             "listOperations": "Llistat d'operacions disponibles",
             "filter": "Filtre",

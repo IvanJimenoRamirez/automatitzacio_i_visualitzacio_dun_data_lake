@@ -12,9 +12,9 @@ export default async function Project( { params: { lang, id } }) {
     return (
         <div>
             <h1>
-                Project <ProjectName id={id} />
+                {dict.page.project.name}: <ProjectName id={id} />
             </h1>
-            <h3>· Operacions <span>- Conjunt d'operacions disponibles al projecte.</span></h3>
+            <h3>· {dict.commons.operations} <span>- {dict.page.project.description}.</span></h3>
             <Endpoints type="projects" id={id} dict={dict} lang={lang} ></Endpoints>
         </div>
     )

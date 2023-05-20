@@ -14,7 +14,7 @@ export default async function Projects({ params: { lang } }) {
             <h3>· {dict.commons.operations}  <span>- {dict.page.projects.description}.</span></h3>
             <div className={styles.projectsContainer}>
                 <h4>{dict.page.projects.projectsList}</h4>
-                <ListProjects lang={lang} styles={styles} />
+                <ListProjects lang={lang} styles={styles} dict={dict} />
             </div>
         </div>
     )

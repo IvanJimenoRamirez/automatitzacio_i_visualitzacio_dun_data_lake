@@ -74,6 +74,7 @@
     align-items: center;
 }
 
+.fileInputContainer,
 .inputContainer input {
     width: 100%;
     height: 30px;
@@ -83,6 +84,35 @@
     outline: none;
     font-size: 16px;
     color: var(--color-hard-grey);
+}
+
+.fileInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    width: calc(100% - 22px);
+}
+
+.fileInputContainer label{
+    cursor: pointer;
+    width: 100%;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fileInputContainer label:first-child {
+    border-right: 1px solid var(--color-low-grey);
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+}
+
+.fileInputContainer input[type="file"] {
+    display: none;
 }
 
 /*  Endpoint send */

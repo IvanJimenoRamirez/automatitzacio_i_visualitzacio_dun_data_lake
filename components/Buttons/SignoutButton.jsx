@@ -9,7 +9,7 @@ import powerLogo from "../../public/icons/navbar/power.svg"
 export function SignoutButton( { signoutTranslation, lang }) {
     const handleSignOut = async () => {
         await signOut({
-          callbackUrl: `/${lang}/auth/login`, // URL a la que se redirigirá al usuario después del cierre de sesión, como la página de inicio
+          callbackUrl: `/${lang}/auth/login`,
           redirect: true,
         });
       };

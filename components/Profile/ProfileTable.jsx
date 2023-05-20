@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react"
 //Components
 import { Loader } from "../loader";
 import { Modal } from "../Modal/Modal";
+import { Error } from "../Error/Error";
 
 export function ProfileTable ({lang, styles, dict}) {
     // Session
@@ -17,6 +18,10 @@ export function ProfileTable ({lang, styles, dict}) {
     const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState(null);
     const [modalActions, setModalActions] = useState([]);
+
+    // Error
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [errorStatus, setErrorStatus] = useState(false);
 
     const [showResult, setShowResult] = useState(false);
 
@@ -77,9 +82,13 @@ export function ProfileTable ({lang, styles, dict}) {
             .then((res) => res.json().then((data) => {
                 showEndpointResult(data, res.status);
             }))
+            .catch((err) => {
+                setErrorMessage(err.message);
+                setErrorStatus(500);
+            });
         } else {
             //TODO: Not an error, just warning the user
-            showEndpointResult("Les contrasenyes no coincideixen", 400)
+            showEndpointResult(dict.page.profile.missmatchPassword, 400)
         }
     }
 
@@ -123,6 +132,7 @@ export function ProfileTable ({lang, styles, dict}) {
 
     return (
         <>
+            {errorMessage ? <Error status={errorStatus} message={errorMessage} action={() => { setErrorMessage(false); setErrorStatus(false) }} dict={dict} lang={lang} /> : ""}
             <Modal
                 isOpen={modalOpen}
                 title={modalTitle}

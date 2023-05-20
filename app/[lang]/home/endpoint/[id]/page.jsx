@@ -9,7 +9,7 @@ export default async function Endpoint( { params: { lang, id } } ) {
 
     return (
         <>
-            <EndpointContent id={id} dict={dict} />
+            <EndpointContent id={id} dict={dict} lang={lang} />
         </>
     )
 }

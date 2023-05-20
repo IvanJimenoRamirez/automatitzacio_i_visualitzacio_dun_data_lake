@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Loader } from "../../components/loader";
 import { Table } from "../../components/Admin/Table/Table";
 import { Modal } from "../../components/Modal/Modal";
+import { Error } from "../Error/Error";
 
 // Styles
 import styles from "./Admin.module.css";
@@ -32,6 +33,10 @@ export function AdminContent({ lang, dict }) {
   const [modalTitle, setModalTitle] = useState("");
   const [modalContent, setModalContent] = useState(null);
   const [modalActions, setModalActions] = useState([]);
+
+  // Error
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(false);
 
   // Session
   const { data: session, status } = useSession();
@@ -70,7 +75,12 @@ export function AdminContent({ lang, dict }) {
         setShowResult(message);
         setTimeout(hideResult, 3000);
       })
-    );
+    ).catch((err) => {
+      setErrorMessage(err.message);
+      setErrorStatus(500);
+      button.classList.toggle(styles.hidden);
+      loader.classList.toggle(styles.hidden);
+  });
   };
 
   /* MODAL SETUPS */
@@ -245,6 +255,11 @@ export function AdminContent({ lang, dict }) {
   /*  FETCHS  */
 
   const performFetch = (url, method, body, callback) => {
+    if (!session || !session.accessToken) {
+      setErrorMessage("Unauthorized");
+      setErrorStatus(401);
+      return;
+    }
     if (["POST", "PUT"].includes(method)) {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI${url}`, {
             method: method,
@@ -259,7 +274,10 @@ export function AdminContent({ lang, dict }) {
                 setTimeout(hideResult, 3000);
                 callback();
             }
-        });
+        }).catch((err) => {
+          setErrorMessage(err.message);
+          setErrorStatus(500);
+      });
     } else {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI${url}`, {
             method: method,
@@ -273,6 +291,9 @@ export function AdminContent({ lang, dict }) {
                 setTimeout(hideResult, 3000);
                 callback();
             }
+        }).catch((err) => {
+          setErrorMessage(err.message);
+          setErrorStatus(500);
         });
     }
     };
@@ -289,10 +310,14 @@ export function AdminContent({ lang, dict }) {
         if (res.status === 200) {
           setUsers(data);
         } else {
-          alert("Error getting users");
+          setErrorMessage(res.statusText);
+          setErrorStatus(res.status);
         }
       })
-    );
+    ).catch((err) => {
+      setErrorMessage(err.message);
+      setErrorStatus(500);
+    });
   };
   const updateApiKeys = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/apiKeys`, {
@@ -305,10 +330,14 @@ export function AdminContent({ lang, dict }) {
         if (res.status === 200) {
           setApiKeys(data);
         } else {
-          alert("Error getting api keys");
+          setErrorMessage(res.statusText);
+          setErrorStatus(res.status);
         }
       })
-    );
+    ).catch((err) => {
+      setErrorMessage(err.message);
+      setErrorStatus(500);
+    });
   };
   // POST
   const createApiKey = () => {
@@ -323,12 +352,19 @@ export function AdminContent({ lang, dict }) {
         setShowResult(dict.commons.success + " ✅");
         setTimeout(hideResult, 3000);
         updateApiKeys();
+      } else {
+        setErrorMessage(res.statusText);
+        setErrorStatus(res.status);
       }
+    }).catch((err) => {
+      setErrorMessage(err.message);
+      setErrorStatus(500);
     });
   }
 
   return (
     <>
+      {errorMessage ? <Error status={errorStatus} message={errorMessage} action={() => { setErrorMessage(false); setErrorStatus(false) }} dict={dict} lang={lang} /> : ""}
       <div>
         <div>
           <h4>{dict.page.admin.manageUsers.title}</h4>

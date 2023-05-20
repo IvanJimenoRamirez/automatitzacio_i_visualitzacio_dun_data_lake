@@ -1,5 +1,6 @@
 'use client'
 
+// Imports
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation'
@@ -15,11 +16,17 @@ import searchIcon from "../../../public/icons/filters/search.svg";
 import clickIcon from "../../../public/icons/filters/click.svg";
 import caretDownIcon from "../../../public/icons/caretDown.svg";
 
+// Components
+import { Error } from "../../Error/Error";
+
 export function Endpoints({dict, id, type, lang}) {
     const router = useRouter();
     
     const [endpoints, setEndpoints] = useState(false);
     const [isLoading, setLoading] = useState(true);
+
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [errorStatus, setErrorStatus] = useState(false);
     
     // use state filters...
     const [searchFilter, setSearchFilter] = useState("");
@@ -35,7 +42,11 @@ export function Endpoints({dict, id, type, lang}) {
           setEndpoints(endpointsDTO);
           setFilteredEndpoints(endpointsDTO);
           setLoading(false);
-        });
+        })
+        .catch((err) => {
+            setErrorMessage(err.message);
+            setErrorStatus(500);
+        } );
     }, []);
 
     const showDetails = (target, key_id) => {
@@ -108,48 +119,51 @@ export function Endpoints({dict, id, type, lang}) {
     }
 
     return (
-        <div className={styles.endpointsWrapper}>
-            <div className={styles.filtersContainer}>
-                <h4>{dict.commons.endpointTable.filter}</h4>
-                <div className={styles.filtersWrapper}>
-                    <p>{dict.commons.endpointTable.filterDescription}</p>
-                    <div className={styles.searchWrapper} onClick={e => focusInputFilter( e.target )}>
-                        <input id="searchInput" type="text" placeholder={dict.commons.endpointTable.search} onChange={
-                            e => setSearchFilter(e.target.value)
-                        } />
-                        <Image src={searchIcon} alt="SearchIcon" width={25} height={25} onClick={e => handleSearchFilter()} ></Image>
-                    </div>
-                    <div className={styles.filterSelectors}>
-                        <div>
-                            <label htmlFor="method">{dict.commons.endpointTable.method}</label>
-                            <select name="method" id="method" onChange={
-                                e => setMethodFilter(e.target.value)
-                            }>
-                                <option value="any">-</option>
-                                <option value="GET">GET</option>
-                                <option value="POST">POST</option>
-                                <option value="PUT">PUT</option>
-                            </select>
+        <>
+            {errorMessage ? <Error status={errorStatus} message={errorMessage} action={() => { setErrorMessage(false); setErrorStatus(false) }} dict={dict} lang={lang} /> : ""}
+            <div className={styles.endpointsWrapper}>
+                <div className={styles.filtersContainer}>
+                    <h4>{dict.commons.endpointTable.filter}</h4>
+                    <div className={styles.filtersWrapper}>
+                        <p>{dict.commons.endpointTable.filterDescription}</p>
+                        <div className={styles.searchWrapper} onClick={e => focusInputFilter( e.target )}>
+                            <input id="searchInput" type="text" placeholder={dict.commons.endpointTable.search} onChange={
+                                e => setSearchFilter(e.target.value)
+                            } />
+                            <Image src={searchIcon} alt="SearchIcon" width={25} height={25} onClick={e => handleSearchFilter()} ></Image>
                         </div>
+                        <div className={styles.filterSelectors}>
+                            <div>
+                                <label htmlFor="method">{dict.commons.endpointTable.method}</label>
+                                <select name="method" id="method" onChange={
+                                    e => setMethodFilter(e.target.value)
+                                }>
+                                    <option value="any">-</option>
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                    <option value="PUT">PUT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onClick={e => filterData()}>
+                        {dict.commons.endpointTable.applyFilters}
+                        </button>
                     </div>
-                    <button onClick={e => filterData()}>
-                    {dict.commons.endpointTable.applyFilters}
-                    </button>
+                </div>
+                <div className={styles.endpointsContainer}>
+                    <h4>{dict.commons.endpointTable.listOperations}</h4>
+                    {
+                    endpointsList ? 
+                        endpointsList : 
+                        (isLoading ? 
+                            <p>{dict.commons.loading}</p> 
+                            : 
+                            <p>{dict.commons.endpointTable.noOperations}.</p>
+                        )
+                    }
                 </div>
             </div>
-            <div className={styles.endpointsContainer}>
-                <h4>{dict.commons.endpointTable.listOperations}</h4>
-                {
-                endpointsList ? 
-                    endpointsList : 
-                    (isLoading ? 
-                        <p>{dict.commons.loading}</p> 
-                        : 
-                        <p>{dict.commons.endpointTable.noOperations}.</p>
-                    )
-                }
-            </div>
-        </div>
+        </>
     )    
   
 }

@@ -82,7 +82,8 @@
                 "newPassword": "New password",
                 "repeatNewPassword": "Repeat new password",
                 "changePassword": "Change password"
-            }
+            },
+            "missmatchPassword": "The new password and the repeat password must be the same"
         },
         "admin": {
             "title": "Admin",
@@ -136,10 +137,13 @@
                 "numeric": " must be numeric",
                 "required": " is required"
             },
-            "activeJob": "Job running"
+            "activeJob": "Job running",
+            "selectFile": "Select a file",
+            "fileNotUploaded": "No file has been selected"
         }
     },
     "commons": {
+        "fileDownloaded": "File downloaded",
         "success": "Success",
         "name": "Name",
         "action": "Action",
@@ -164,6 +168,11 @@
             "endpoint": "Endpoint",
             "parameters": "Parameters",
             "noParametersRequired": "No parameters required"
+        },
+        "errors": {
+            "title": "An error has occurred",
+            "status": "Status code",
+            "message": "Message"
         }
     }
 }

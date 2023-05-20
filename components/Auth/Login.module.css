@@ -48,6 +48,7 @@
 .form div {
     width: 300px;
     position: relative;
+    display: flex;
 }
 
 .form div label {

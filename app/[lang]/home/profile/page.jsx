@@ -5,7 +5,7 @@ import { getDictionary } from '../../dictionaries';
 import styles from './profile.module.css'
 
 // Components
-import { ProfileTable } from "../../../../components/Profile/Profile"
+import { ProfileTable } from "../../../../components/Profile/ProfileTable"
 
 export default async function LandingZone({ params: { lang } }) { 
     const dict = await getDictionary(lang);

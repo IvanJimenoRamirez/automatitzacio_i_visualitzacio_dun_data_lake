@@ -82,7 +82,8 @@
                 "newPassword": "Nova contrasenya",
                 "repeatNewPassword": "Repeteix la nova contrasenya",
                 "changePassword": "Canviar contrasenya"
-            }
+            },
+            "missmatchPassword": "Les contrasenyes no coincideixen"
         },
         "admin": {
             "title": "Administrador",
@@ -136,10 +137,13 @@
                 "numeric": " ha de ser numèric",
                 "required": " és requerit"
             },
-            "activeJob": "Execució en procés"
+            "activeJob": "Execució en procés",
+            "selectFile": "Selecciona un fitxer",
+            "fileNotUploaded": "No s'ha seleccionat un fitxer"
         }
     },
     "commons": {
+        "fileDownloaded": "Fitxer descarregat",
         "success": "Èxit",
         "name": "Nom",
         "action": "Acció",
@@ -164,6 +168,11 @@
             "endpoint": "Endpoint",
             "parameters": "Paràmetres",
             "noParametersRequired": "No es requereixen paràmetres"
+        },
+        "errors": {
+            "title": "Ha succeït un error",
+            "status": "Codi d'estat",
+            "message": "Missatge"
         }
     }
 }

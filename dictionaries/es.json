@@ -82,7 +82,8 @@
                 "newPassword": "Nueva contraseña",
                 "repeatNewPassword": "Repite la nueva contraseña",
                 "changePassword": "Cambiar contraseña"
-            }
+            },
+            "missmatchPassword": "Las contraseñas no coinciden"
         },
         "admin": {
             "title": "Administrador",
@@ -136,10 +137,13 @@
                 "numeric": " ha de ser numérico",
                 "required": " es obligatorio"
             },
-            "activeJob": "Ejecución en proceso"
+            "activeJob": "Ejecución en proceso",
+            "selectFile": "Seleccione un fichero",
+            "fileNotUploaded": "No se ha seleccionado un fichero"
         }
     },
     "commons": {
+        "fileDownloaded": "Fichero descargado",
         "success": "Éxito",
         "name": "Nombre",
         "action": "Acción",
@@ -164,6 +168,11 @@
             "endpoint": "Endpoint",
             "parameters": "Parmámetros",
             "noParametersRequired": "No se requieren parámetros"
+        },
+        "errors": {
+            "title": "Ha ocurrido un error",
+            "status": "Código de error",
+            "message": "Mensaje"
         }
     }
 }

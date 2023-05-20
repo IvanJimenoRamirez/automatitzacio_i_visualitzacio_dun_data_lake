@@ -83,3 +83,7 @@ a {
 .warning {
     color: var(--color-quaternary);
 }
+
+button:hover {
+    background-color: var(--color-secondary) !important;
+}

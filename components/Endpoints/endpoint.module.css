@@ -244,7 +244,7 @@
 }
 
 .buttonsContainer button:last-child {
-    background-color: var(--color-quaternary);
+    background-color: var(--color-quaternary) !important;
 }
 
 .scheduleContainer {

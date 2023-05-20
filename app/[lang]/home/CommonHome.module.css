@@ -69,7 +69,7 @@
 }
 
 .nav div:first-child button:hover {
-    background-color: var(--navbar-hover);
+    background-color: var(--navbar-hover) !important;
 }
 
 .nav img {

@@ -97,14 +97,18 @@
             "delete": "Delete",
             "edit": "Edit",
             "copy": "Copy",
+            "permissions": "Permissions",
             "manageUsers": {
                 "edit": "Edit user",
                 "create": "Create user",
                 "delete": "Delete user",
+                "permissions": "Manage permissions",
                 "deleteConfirmation": "Are you sure you want to delete the user: ",
                 "title": "Manage users",
                 "list": "Users list",
-                "new": "New user"
+                "new": "New user",
+                "zones": "Zones",
+                "projects": "Projects"
             },
             "manageApiKeys": {
                 "delete": "Delete API Key",

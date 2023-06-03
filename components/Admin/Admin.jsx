@@ -19,6 +19,7 @@ import newIcon from "../../public/icons/admin/new.svg";
 import copyIcon from "../../public/icons/admin/copy.svg";
 import deleteIcon from "../../public/icons/admin/delete.svg";
 import editIcon from "../../public/icons/admin/edit.svg";
+import permissionsIcon from "../../public/icons/admin/permissions.svg";
 
 export function AdminContent({ lang, dict }) {
   const [showResult, setShowResult] = useState(false);
@@ -27,6 +28,8 @@ export function AdminContent({ lang, dict }) {
   // Fetched Data
   const [users, setUsers] = useState([]);
   const [apiKeys, setApiKeys] = useState([]);
+  const [zones, setZones] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   // modal
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,6 +48,43 @@ export function AdminContent({ lang, dict }) {
     if (session) {
       updateUsers();
       updateApiKeys();
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/zones`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }).then((res) =>
+        res.json().then((data) => {
+          if (res.status === 200) {
+            setZones(data);
+          } else {
+            setErrorMessage(res.statusText);
+            setErrorStatus(res.status);
+          }
+        })
+      ).catch((err) => {
+        setErrorMessage(err.message);
+        setErrorStatus(500);
+      });
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/projects`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }).then((res) =>
+        res.json().then((data) => {
+          if (res.status === 200) {
+            setProjects(data);
+          } else {
+            setErrorMessage(res.statusText);
+            setErrorStatus(res.status);
+          }
+        }
+      )).catch((err) => {
+        setErrorMessage(err.message);
+        setErrorStatus(500);
+      }
+      );
     }
   }, [session]);
 
@@ -189,6 +229,110 @@ export function AdminContent({ lang, dict }) {
     setModalOpen(true);
   }
 
+  const permissionsUserModal = (user) => {
+    setModalTitle(dict.page.admin.manageUsers.permissions);
+    setModalContent(
+      <form id="userPermissionsForm">
+        <div>
+          <label htmlFor="active">{dict.page.admin.manageUsers.zones}</label>
+          <select name="zones" id="user_zones" multiple>
+            {
+              zones.map((zone) => {
+                const isSelected = user.user_zones.filter( z => z.zone_id == zone.id).length > 0;
+                return <option value={zone.id} selected={isSelected}>{zone.name}</option>
+              })
+            }
+          </select>
+        </div>
+        <div>
+          <label htmlFor="active">{dict.page.admin.manageUsers.projects}</label>
+          <select name="projects" id="user_projects" multiple>
+            {
+              projects.map((project) => {
+                const isSelected = user.user_projects.filter( p => p.project_id == project.id).length > 0;
+                return <option value={project.id} selected={isSelected}>{project.name}</option>
+              })
+            }
+          </select>
+        </div>
+      </form>
+    )
+    setModalActions([
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      {
+        label: dict.commons.change,
+        onClick: () => {
+          let form = document.getElementById("userPermissionsForm");
+          let selects = form.querySelectorAll("select");
+            let body = {};
+            selects.forEach((select) => {
+                body[select.name] = Array.from(select.selectedOptions).map(option => option.value);
+            });
+            performFetch(
+                `/relate/user/${user.id}`,
+                "PUT",
+                body,
+                updateUsers
+            );
+          setModalOpen(false);
+        },
+      },
+    ]);
+    setModalOpen(true);
+  }
+
+  const permissionsApiKeyModal = (apiKey) => {
+    setModalTitle(dict.page.admin.manageUsers.permissions);
+    setModalContent(
+      <form id="apiKeyPermissionsForm">
+        <div>
+          <label htmlFor="active">{dict.page.admin.manageUsers.zones}</label>
+          <select name="zones" id="user_zones" multiple>
+            {
+              zones.map((zone) => {
+                const isSelected = apiKey.zone_api_keys.filter( z => z.zone_id == zone.id).length > 0;
+                return <option value={zone.id} selected={isSelected}>{zone.name}</option>
+              })
+            }
+          </select>
+        </div>
+        <div>
+          <label htmlFor="active">{dict.page.admin.manageUsers.projects}</label>
+          <select name="projects" id="user_projects" multiple>
+            {
+              projects.map((project) => {
+                const isSelected = apiKey.project_api_keys.filter( p => p.project_id == project.id).length > 0;
+                return <option value={project.id} selected={isSelected}>{project.name}</option>
+              })
+            }
+          </select>
+        </div>
+      </form>
+    )
+    setModalActions([
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      {
+        label: dict.commons.change,
+        onClick: () => {
+          let form = document.getElementById("apiKeyPermissionsForm");
+          let selects = form.querySelectorAll("select");
+            let body = {};
+            selects.forEach((select) => {
+                body[select.name] = Array.from(select.selectedOptions).map(option => option.value);
+            });
+            performFetch(
+                `/relate/apiKey/${apiKey.id}`,
+                "PUT",
+                body,
+                updateApiKeys
+            );
+          setModalOpen(false);
+        },
+      },
+    ]);
+    setModalOpen(true);
+  }
+
   const hideResult = () => {
     setShowResult(false);
   };
@@ -205,6 +349,13 @@ export function AdminContent({ lang, dict }) {
       icon: editIcon,
       onClick: (user) => {
         updateUserModal(user);
+      },
+    },
+    {
+      label: dict.page.admin.permissions,
+      icon: permissionsIcon,
+      onClick: (user) => {
+        permissionsUserModal(user);
       },
     },
     {
@@ -225,6 +376,13 @@ export function AdminContent({ lang, dict }) {
   ];
   const apiKeysActions = [
     {
+      label: dict.page.admin.permissions,
+      icon: permissionsIcon,
+      onClick: (apiKey) => {
+        permissionsApiKeyModal(apiKey);
+      },
+    },
+    { //permissionsApiKeyModal
       label: dict.page.admin.delete,
       icon: deleteIcon,
       onClick: (apiKey) => {
@@ -308,6 +466,7 @@ export function AdminContent({ lang, dict }) {
     }).then((res) =>
       res.json().then((data) => {
         if (res.status === 200) {
+          console.log(data)
           setUsers(data);
         } else {
           setErrorMessage(res.statusText);
@@ -328,6 +487,7 @@ export function AdminContent({ lang, dict }) {
     }).then((res) =>
       res.json().then((data) => {
         if (res.status === 200) {
+          console.log(data)
           setApiKeys(data);
         } else {
           setErrorMessage(res.statusText);

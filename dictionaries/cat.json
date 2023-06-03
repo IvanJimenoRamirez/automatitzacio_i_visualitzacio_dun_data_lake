@@ -97,14 +97,18 @@
             "delete": "Eliminar",
             "edit": "Editar",
             "copy": "Copiar",
+            "permissions": "Permisos",
             "manageUsers": {
                 "edit": "Editar usuari",
                 "create": "Afegir usuari",
                 "delete": "Eliminar usuari",
+                "permissions": "Gestionar permisos",
                 "deleteConfirmation": "Estàs segur/a que vols eliminar l'usuari: ",
                 "title": "Gestió d'usuaris",
                 "list": "Llistat d'usuaris",
-                "new": "Nou usari"
+                "new": "Nou usari",
+                "zones": "Zones",
+                "projects": "Projectes"
             },
             "manageApiKeys": {
                 "delete": "Eliminar API Key",

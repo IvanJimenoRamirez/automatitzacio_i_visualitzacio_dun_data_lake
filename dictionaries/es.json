@@ -97,14 +97,18 @@
             "delete": "Eliminar",
             "edit": "Editar",
             "copy": "Copiar",
+            "permissions": "Permisos",
             "manageUsers": {
                 "edit": "Editar usuario",
                 "create": "Crear usuario",
                 "delete": "Eliminar usuario",
+                "permissions": "Gestionar permisos",
                 "deleteConfirmation": "¿Estás seguro/a de que quieres eliminar al usuario: ",
                 "title": "Gestión de usuarios",
                 "list": "Listado de usuarios",
-                "new": "Nuevo usuario"
+                "new": "Nuevo usuario",
+                "zones": "Zonas",
+                "projects": "Proyectos"
             },
             "manageApiKeys": {
                 "delete": "Eliminar API Key",

@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation'
+import { useSession } from "next-auth/react";
 
 // Styles
 import styles from './Endpoints.module.css'
@@ -32,22 +33,40 @@ export function Endpoints({dict, id, type, lang}) {
     const [searchFilter, setSearchFilter] = useState("");
     const [methodFilter, setMethodFilter] = useState("any");
     const [filteredEndpoints, setFilteredEndpoints] = useState(false);
+
+    // Session
+    const { data: session, status } = useSession();
     
     useEffect(() => {
-        setLoading(true);
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${type}/${id}/endpoints`)
-        .then((res) => res.json())
-        .then((data) => {
-          const endpointsDTO = new EndpointsDTO(data);
-          setEndpoints(endpointsDTO);
-          setFilteredEndpoints(endpointsDTO);
-          setLoading(false);
-        })
-        .catch((err) => {
-            setErrorMessage(err.message);
-            setErrorStatus(500);
-        } );
-    }, []);
+        if (session) {
+            setLoading(true);
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${type}/${id}/endpoints`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${session.accessToken}`
+                }
+            })
+            .then((res) => {
+                if (res.status == 403) {
+                    router.push(`${lang}/home?error=403`);
+                    return;
+                } else res.json().then((data) => {
+                    console.log(data)
+                  const endpointsDTO = new EndpointsDTO(data);
+                  setEndpoints(endpointsDTO);
+                  setFilteredEndpoints(endpointsDTO);
+                  setLoading(false);
+                })
+                .catch((err) => {
+                    setErrorMessage(err.message);
+                    setErrorStatus(500);
+                } );
+            })
+            
+        }
+    }, [session]);
 
     const showDetails = (target, key_id) => {
         let endpointRow = document.getElementById(key_id);

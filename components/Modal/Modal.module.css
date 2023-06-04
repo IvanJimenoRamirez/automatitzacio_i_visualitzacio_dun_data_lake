@@ -100,6 +100,31 @@
     padding: 5px;
 }
 
+.modalBody form div select {
+    width: 50%;
+    margin: 0 auto;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 5px;
+
+    overflow: auto;
+}
+
+.modalBody form div select option {
+    padding: 5px;
+    margin: 1px;
+    border-radius: 5px;
+}
+.modalBody form div select option:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+.modalBody form div select option:checked {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
 .modalBody form div  input:focus {
     outline-color: var(--color-primary);
 }

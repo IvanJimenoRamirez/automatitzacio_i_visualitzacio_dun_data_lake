@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 import { useSession } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 
 //Components
 import { Loader } from "../loader";
@@ -16,6 +18,8 @@ import closeIcon from "../../public/icons/close.svg";
 import fileIcon from "../../public/icons/endpoint/file.svg";
 
 export function EndpointContent({ id, dict, lang }) {
+  const router = useRouter();
+
   const [endpoint, setEndpoint] = useState(false);
   const [jobs, setJobs] = useState(false);
 
@@ -36,16 +40,35 @@ export function EndpointContent({ id, dict, lang }) {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/endpoint/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setEndpoint(data);
-        if (data.jobs && data.jobs.length > 0) setJobs(data.jobs[0]);
-      }).catch((err) => {
-        setErrorMessage(err.message);
-        setErrorStatus(500);
-      });
-  }, []);
+    if (session) {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/endpoint/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${session.accessToken}`,
+        },
+      })
+        .then(async (res) => {
+          if (res.status == 403) {
+            router.push(`${lang}/home?error=403`);
+            return;
+          } else if (res.status == 401) {
+            await signOut({
+               callbackUrl: `/${lang}/auth/login`,
+               redirect: true,
+             });
+        }
+          else res.json().then((data) => {
+            setEndpoint(data);
+            if (data.jobs && data.jobs.length > 0) setJobs(data.jobs[0]);
+          }).catch((err) => {
+            setErrorMessage(err.message);
+            setErrorStatus(500);
+          })
+        })
+    }
+  }, [session]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

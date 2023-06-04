@@ -15,21 +15,21 @@ function isSessionExpired(session) {
 }
 
 export async function middleware(req) {
-  const pathname = req.nextUrl.pathname;
+  let pathname = req.nextUrl.pathname;
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
   const session = await getToken({ req: req, secret: process.env.JWT_SECRET });
 
-  console.log("Mising locale? " + pathnameIsMissingLocale);
-
-  // Redirige si no hay un idioma
+  // Redirects if the pathname is missing a locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(req);
+    if (pathname === '' || pathname === '/') pathname = `/home`;
     const urlWithLocale = new URL(`/${locale}${pathname}`, req.url);
 
-    // Si el usuario no está autenticado, redirige a la página de inicio de sesión después de agregar el locale
+
+    // If the user is not authenticated, redirect to login page
     if (!session || isSessionExpired(session)) {
       const url = urlWithLocale;
       url.pathname = `/${locale}/auth/login`;
@@ -70,5 +70,5 @@ const adminRoutes = [
 ];
 
 export const config = {
-  matcher: ['/', '/:locale/home:path*', '/auth/login' ,'/home/:path*', '/:locale(en-US|es-ES|cat-ES)/home/:path*' ]
+  matcher: ['/', '/:locale(en-US|es-ES|cat-ES)', '/:locale/home:path*', '/auth/login' ,'/home/:path*', '/:locale(en-US|es-ES|cat-ES)/home/:path*' ]
 };

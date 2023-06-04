@@ -27,7 +27,7 @@ export default NextAuth({
                     name: data.name,
                     token: data.access_token,
                     tokenType: data.token_type,
-                    email: 'test@test.com',
+                    email: data.email,
                     role: data.role
                 }
                 return user;

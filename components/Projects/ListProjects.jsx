@@ -3,6 +3,8 @@
 // Imports
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 
 // Components
 import { Error } from "../Error/Error";
@@ -13,29 +15,51 @@ export function ListProjects ({lang, styles, dict }) {
     const [errorMessage, setErrorMessage] = useState(false);
     const [errorStatus, setErrorStatus] = useState(false);
 
+    const { data: session, status } = useSession();
+
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/projects`)
-        .then((res) => res.json())
-        .then((data) => {
-            setProjects(data);
-        })
-        .catch((err) => {
-            setErrorMessage(err.message);
-            setErrorStatus(500);
-        });
-    }, []);
+        if (session) {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/projects`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${session.accessToken}`
+                }
+            })
+            .then(async (res) => {
+                if (res.status == 401) {
+                    await signOut({
+                        callbackUrl: `/${lang}/auth/login`,
+                        redirect: true,
+                      });
+                }
+                res.json().then((data) => {
+                    setProjects(data);
+                })
+                .catch((err) => {
+                    setErrorMessage(err.message);
+                    setErrorStatus(500);
+                });
+            })
+        }
+    }, [session]);
 
     return (
         <>
             {errorMessage ? <Error status={errorStatus} message={errorMessage} action={() => { setErrorMessage(false); setErrorStatus(false) }} dict={dict} lang={lang} /> : ""}
-            {projects && projects.map((project) => {
-                return (
-                    <div className={styles.project} key={project.id}>
-                        <p>{project.name}</p>
-                        <Link href={`/${lang}/home/projects/` + project.id}>Endpoints</Link>
-                    </div>
-                )
-            })}
+            {projects && projects.length > 0 ? (
+                projects.map((project) => {
+                    return (
+                        <div className={styles.project} key={project.id}>
+                            <p>{project.name}</p>
+                            <Link href={`/${lang}/home/projects/` + project.id}>Endpoints</Link>
+                        </div>
+                    )
+                })
+            ) : (
+                <p>{dict.commons.noContent}</p>
+            )}
         </>
     )
 }

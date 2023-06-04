@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation'
 import { useSession } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 
 // Styles
 import styles from './Endpoints.module.css'
@@ -25,6 +26,8 @@ export function Endpoints({dict, id, type, lang}) {
     
     const [endpoints, setEndpoints] = useState(false);
     const [isLoading, setLoading] = useState(true);
+
+    const [loadingMessage, setLoadingMessage] = useState(dict.commons.loading);
 
     const [errorMessage, setErrorMessage] = useState(false);
     const [errorStatus, setErrorStatus] = useState(false);
@@ -48,11 +51,18 @@ export function Endpoints({dict, id, type, lang}) {
                     "Authorization": `Bearer ${session.accessToken}`
                 }
             })
-            .then((res) => {
+            .then(async (res) => {
                 if (res.status == 403) {
-                    router.push(`${lang}/home?error=403`);
-                    return;
-                } else res.json().then((data) => {
+                    setErrorMessage(dict.commons.notEnoughPermissions);
+                    setErrorStatus(403);
+                    setLoadingMessage(dict.commons.endpointTable.noOperations);
+                } else if (res.status == 401) {
+                     await signOut({
+                        callbackUrl: `/${lang}/auth/login`,
+                        redirect: true,
+                      });
+                }
+                else res.json().then((data) => {
                     console.log(data)
                   const endpointsDTO = new EndpointsDTO(data);
                   setEndpoints(endpointsDTO);
@@ -176,7 +186,7 @@ export function Endpoints({dict, id, type, lang}) {
                     endpointsList ? 
                         endpointsList : 
                         (isLoading ? 
-                            <p>{dict.commons.loading}</p> 
+                            <p>{loadingMessage}</p> 
                             : 
                             <p>{dict.commons.endpointTable.noOperations}.</p>
                         )

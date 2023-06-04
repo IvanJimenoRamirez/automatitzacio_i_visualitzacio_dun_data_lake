@@ -151,6 +151,7 @@
         }
     },
     "commons": {
+        "notEnoughPermissions": "No tienes suficientes permisos para acceder a esta página",
         "fileDownloaded": "Fichero descargado",
         "success": "Éxito",
         "name": "Nombre",

@@ -151,6 +151,7 @@
         }
     },
     "commons": {
+        "notEnoughPermissions": "No tens suficients permisos per accedir a aquesta pàgina",
         "fileDownloaded": "Fitxer descarregat",
         "success": "Èxit",
         "name": "Nom",

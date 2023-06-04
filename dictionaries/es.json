@@ -24,6 +24,8 @@
         "home": {
             "title": "Administración del Data Lake",
             "zones": {
+                "sources": "Fuentes",
+                "data": "Datos",
                 "name": "Zonas",
                 "description": "Zonas del Data Lake. Resumen de contenidos",
                 "tlz": {

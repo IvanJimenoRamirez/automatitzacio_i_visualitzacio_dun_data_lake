@@ -10,7 +10,7 @@ export function HomeTable({ id, col1, col2, loading }) {
   
     useEffect(() => {
       setLoading(true);
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${id}/statistics`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/zones/${id}/statistics`)
         .then((res) => res.json())
         .then((data) => {
           const sources = new TLDStatisticsDTO(data);

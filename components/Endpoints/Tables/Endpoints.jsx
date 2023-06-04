@@ -142,9 +142,11 @@ export function Endpoints({dict, id, type, lang}) {
     }
 
     const filterData = () => {
-        let filteredEndpoints = new EndpointsDTO(endpoints.filter(methodFilter, searchFilter));
-        if (filteredEndpoints.getNumberOfEndpoints() === 0) setFilteredEndpoints(false);
-        else setFilteredEndpoints(filteredEndpoints);
+        if (endpoints && endpoints.getList().length > 0) {
+            let filteredEndpoints = new EndpointsDTO(endpoints.filter(methodFilter, searchFilter));
+            if (filteredEndpoints.getNumberOfEndpoints() === 0) setFilteredEndpoints(false);
+            else setFilteredEndpoints(filteredEndpoints);
+        }
     }
 
     return (

@@ -4,13 +4,13 @@ import styles from "./Zone.module.css";
 import { useState, useEffect } from "react";
 import {TLDStatisticsDTO} from "../../../payloads/response/TLDStatisticsDTO";
 
-export function Zone({ name, description, id }) {
+export function Zone({ name, description, id, dict }) {
     const [statistics, setStatistics] = useState(null);
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true)
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/${id}/statistics`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/DataLakeAPI/zones/${id}/statistics`)
           .then((res) => res.json())
           .then((data) => {
               const sources = new TLDStatisticsDTO(data);
@@ -24,7 +24,7 @@ export function Zone({ name, description, id }) {
             <h4>{name}</h4>
             <p>{description}</p>
             {isLoading ? (
-                "Loading..."
+                dict.commons.loading
                 ) : (
                 <div className={styles.statisticsWrapper}>
                     {statistics ? (
@@ -32,8 +32,8 @@ export function Zone({ name, description, id }) {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>#Fonts</th>
-                                    <th>#Metadata</th>
+                                    <th>{dict.page.home.zones.sources}</th>
+                                    <th>{dict.page.home.zones.data}</th>
                                 </tr>
                             </thead>
                             <tbody>

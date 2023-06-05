@@ -10,7 +10,11 @@
         "logout": "Tanca la sessió"
     },
     "header": {
-        "language": "Selecciona l'idioma"
+        "language": "Selecciona l'idioma",
+        "welcomeBack": "Benvingut/da de nou"
+    },
+    "footer": {
+        "privacyPolicy": "Política de privacitat"
     },
     "page": {
         "login": {

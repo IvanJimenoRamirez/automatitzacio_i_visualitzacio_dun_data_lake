@@ -13,7 +13,7 @@
     top: 0;
     left: 75px;
     height: 75px;
-    width: calc(100% - 75px);
+    width: calc(100% - 75px - 60px);
 
     display: flex;
     justify-content: space-between;
@@ -29,7 +29,6 @@
 }
 .header select {
     color: var(--color-primary);
-    margin: 0 60px 0 0;
     padding: 0 10px 0 10px;
     height: 30px;
 
@@ -159,12 +158,13 @@
 /* MAIN CONTENT */
 
 .main {
-    height: 85%;
+    height: calc(100% - 75px - 100px);
     width: calc(100% - var(--navbarWidth));
     background-color: var(--color-white);
     border-radius: 20px;
     margin-top: 75px;
     margin-right: 60px;
+    margin-bottom: 100px !important;
     transition: all 0.25s ease-in-out;
     overflow: auto;
     overflow-y: overlay;
@@ -196,13 +196,35 @@
     padding: 0 35px 0 35px;
 }
 
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    z-index: 99;
+}
+
 @media screen and (max-width: 520px) {
     .main {
         margin-top: 150px;
+        height: calc(100% - 150px - 100px)
     }
     .header {
         flex-direction: column;
         height: 120px;
+        justify-content: center;
+        gap: 10px;
+    }
+    .footer {
+        gap: 5px;
     }
     
 }

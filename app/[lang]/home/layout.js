@@ -8,6 +8,7 @@ import { SignoutButton } from "../../../components/Buttons/SignoutButton";
 import { AuthProvider } from "../../../components/Home/AuthProvider"
 import { NavbarAdmin } from "../../../components/Admin/NavbarAdmin";
 import { LanguageSelector } from "../../../components/Header/LanguageSelector";
+import { UserName } from "../../../components/Header/UserName";
 
 // Icons
 import homeLogo from "../../../public/icons/navbar/home.svg";
@@ -28,7 +29,9 @@ export default async function RootLayout({ params: { lang }, children }) {
   return (
       <body className={styles.body}>
             <header className={styles.header}>
-                <Image src={upcLogo} width={260} height={80} alt={"Universitat Politècnica de Catalunya. Barcelona Tech"} priority></Image>
+                <AuthProvider>
+                    <UserName dict={dict}/>
+                </AuthProvider>
                 <LanguageSelector dict={dict} />
             </header>
             <nav id="navbar" className={styles.nav}>
@@ -97,6 +100,12 @@ export default async function RootLayout({ params: { lang }, children }) {
                     {children}
                 </AuthProvider>
             </main>
+            <footer className={styles.footer}>
+                <Image src={upcLogo} width={260} height={80} alt={"Universitat Politècnica de Catalunya. Barcelona Tech"} priority></Image>
+                <Link href={`${lang}/home/privacyPolicy`}>
+                    <span><u>{dict.footer.privacyPolicy}</u></span>
+                </Link>
+            </footer>
         </body>
   );
 }

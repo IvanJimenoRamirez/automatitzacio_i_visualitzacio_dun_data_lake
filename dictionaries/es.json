@@ -10,7 +10,11 @@
         "logout": "Cierra sesión"
     },
     "header": {
-        "language": "Seleccionar idioma"
+        "language": "Seleccionar idioma",
+        "welcomeBack": "Bienvenido/a de nuevo"
+    },
+    "footer": {
+        "privacyPolicy": "Política de privacidad"
     },
     "page": {
         "login": {

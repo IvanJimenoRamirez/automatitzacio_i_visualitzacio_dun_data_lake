@@ -154,6 +154,22 @@
             "activeJob": "Ejecución en proceso",
             "selectFile": "Seleccione un fichero",
             "fileNotUploaded": "No se ha seleccionado un fichero"
+        },
+        "privacyPolicy": {
+            "title": "Política de privacidad",
+            "content": {
+                "title": "Reglamento general de protección de datos (GDPR)",
+                "welcomeUser": "Estimado usuario,",
+                "welcomeContent": "Su privacidad es importante para nosotros. Por ello, estamos comprometidos en el cumplimiento del Reglamento General de Protección de Datos (GDPR) de la Unión Europea.",
+                "recolectedData": "Requerimos y usamos los siguientes datos personales para el correcto funcionamiento de la plataforma:",
+                "data" : {
+                    "name": "Nombre",
+                    "email": "Correo electrónico",
+                    "password": "Contraseña"
+                } ,
+                "dataUsage": "Estos datos se recogen exclusivamente para permitirle iniciar sesión y utilizar nuestra plataforma. La contraseña que nos proporciona se mantiene encriptada en nuestra base de datos y no se utiliza para ningún otro fin. No utilizamos sus datos personales para procesos internos ni los compartimos con terceros sin su consentimiento explícito.",
+                "thanksUser": "Gracias por su confianza. Para cualquier duda o consulta sobre nuestra política de privacidad, no dude en contactar con el administrador del sistema."
+            }
         }
     },
     "commons": {

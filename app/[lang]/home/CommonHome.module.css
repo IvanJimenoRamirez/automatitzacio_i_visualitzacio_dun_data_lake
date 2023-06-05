@@ -212,6 +212,17 @@
     z-index: 99;
 }
 
+.footer img {
+    position: fixed;
+    bottom: 10px;
+    left: 0px;
+}
+
+.footer a:hover {
+   text-decoration: underline;
+} 
+    
+
 @media screen and (max-width: 520px) {
     .main {
         margin-top: 150px;
@@ -243,5 +254,20 @@
     .main {
         width: 100%;
         margin-left: 75px;
+    }
+
+    .footer {
+        justify-content: flex-end;
+    }
+
+    .footer a {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .footer a {
+        width: 50px;
+        margin-right: 40px;
     }
 }

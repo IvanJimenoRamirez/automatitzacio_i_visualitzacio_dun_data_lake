@@ -154,6 +154,22 @@
             "activeJob": "Job running",
             "selectFile": "Select a file",
             "fileNotUploaded": "No file has been selected"
+        },
+        "privacyPolicy": {
+            "title": "Privacy Policy",
+            "content": {
+                "title": "General Data Protection Regulation (GDPR)",
+                "welcomeUser": "Dear user,",
+                "welcomeContent": "Your privacy is important to us. That is why we are committed to complying with the European Union's General Data Protection Regulation (GDPR).",
+                "recolectedData": "We require and use the following personal data for the correct operation of the platform:",
+                "data" : {
+                    "name": "Name",
+                    "email": "Email",
+                    "password": "Password"
+                } ,
+                "dataUsage": "This data is collected exclusively to enable you to log in and use our platform. The password you provide is kept encrypted in our database and is not used for any other purpose. We do not use your personal data for internal processes or share it with third parties without your explicit consent.",
+                "thanksUser": "Thank you for your trust. If you have any questions about our privacy policy, please do not hesitate to contact the system administrator."
+            }
         }
     },
     "commons": {

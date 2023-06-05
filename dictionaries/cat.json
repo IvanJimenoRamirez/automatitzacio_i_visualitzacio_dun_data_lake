@@ -154,6 +154,22 @@
             "activeJob": "Execució en procés",
             "selectFile": "Selecciona un fitxer",
             "fileNotUploaded": "No s'ha seleccionat un fitxer"
+        },
+        "privacyPolicy": {
+            "title": "Política de privacitat",
+            "content": {
+                "title": "Reglament general de protecció de dades (GDPR)",
+                "welcomeUser": "Estimat usuari,",
+                "welcomeContent": "La seva privacitat és de gran importància per a nosaltres. En conseqüència, estem compromesos en el compliment del Reglament General de Protecció de Dades (GDPR) de la Unió Europea.",
+                "recolectedData": "Requerim i utilitzem les següents dades personals per al correcte funcionament de la plataforma:",
+                "data" : {
+                    "name": "Nom",
+                    "email": "Correu electrònic",
+                    "password": "Contrasenya"
+                } ,
+                "dataUsage": "Aquestes dades es recullen exclusivament per permetre l'inici de sessió i utilitzar la nostra plataforma. La contrasenya que ens proporciona es manté encriptada a la nostra base de dades i no es fa servir per a cap altre fi. No usem les seves dades personals per a processos interns ni compartim amb tercers sense el seu consentiment explícit.",
+                "thanksUser": "Gràcies per la seva confiança. Per a qualsevol qüestió o consulta sobre la nostra política de privacitat, no dubti a contactar amb l'administrador del sistema."
+            }
         }
     },
     "commons": {

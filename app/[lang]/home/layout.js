@@ -103,7 +103,7 @@ export default async function RootLayout({ params: { lang }, children }) {
             <footer className={styles.footer}>
                 <Image src={upcLogo} width={260} height={80} alt={"Universitat Politècnica de Catalunya. Barcelona Tech"} priority></Image>
                 <Link href={`${lang}/home/privacyPolicy`}>
-                    <span><u>{dict.footer.privacyPolicy}</u></span>
+                    <span>{dict.footer.privacyPolicy}</span>
                 </Link>
             </footer>
         </body>

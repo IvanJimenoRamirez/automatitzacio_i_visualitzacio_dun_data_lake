@@ -14,11 +14,14 @@ describe('Admin page renders', () => {
         const component = render(
             <SessionProvider
                 session={{
-                    expires: '1',
-                    user: {
-                        name: 'test',
-                        email: 'test@test.com',
-                    }
+                    name: "test",
+                    email: "test@test.com",
+                    role: 1,
+                    accessToken: "unauthorizedToken",
+                    tokenType: "bearer",
+                    iat: 1686243266,
+                    exp: 1686246666,
+                    jti: "227f048c-cef8-4b93-94a1-2d42256baa9c",
                 }}
             > 
                 <AdminContent lang={lang} dict={dict} /> 
@@ -32,11 +35,14 @@ describe('Admin page renders', () => {
             const component = render(
                 <SessionProvider
                     session={{
-                        expires: '1',
-                        user: {
-                            name: 'test',
-                            email: 'test@test.com',
-                        }
+                        name: "test",
+                        email: "test@test.com",
+                        role: 1,
+                        accessToken: "unauthorizedToken",
+                        tokenType: "bearer",
+                        iat: 1686243266,
+                        exp: 1686246666,
+                        jti: "227f048c-cef8-4b93-94a1-2d42256baa9c",
                     }}
                 > 
                     <AdminContent lang={lang} dict={dict} /> 
@@ -54,7 +60,7 @@ describe('Admin page renders', () => {
                         name: "test",
                         email: "test@test.com",
                         role: 1,
-                        accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiZXhwIjoxNjg2MjQ1OTMzfQ.0hzhbvnoFX1UoC1CHyTQ1pTIKk-8lFvIVS-JZYbpUBs",
+                        accessToken: global.adminToken,
                         tokenType: "bearer",
                         iat: 1686243266,
                         exp: 1686246666,
@@ -64,11 +70,8 @@ describe('Admin page renders', () => {
                     <AdminContent lang={lang} dict={dict} /> 
                 </SessionProvider>
             );
-            // Espera 10 segundos
-            await new Promise(resolve => setTimeout(resolve, 3000));
-
-            console.log(prettyDOM(component.container));
-            expect("").toEqual("");
+            await new Promise(resolve => setTimeout(resolve, 300));
+            expect(component.container).toHaveTextContent("test@user.com");
         })
     })
 })

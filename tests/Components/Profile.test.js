@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, prettyDOM } from '@testing-library/react'
+import { render} from '@testing-library/react'
 import { ProfileTable } from '../../components/Profile/ProfileTable'
 import { getDictionary } from '../../app/[lang]/dictionaries'
 import { SessionProvider } from 'next-auth/react'

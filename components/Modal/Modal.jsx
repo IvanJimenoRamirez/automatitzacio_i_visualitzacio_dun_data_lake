@@ -1,15 +1,16 @@
+/* eslint-disable react/jsx-handler-names */
 // Imports
-import Image from "next/image";
+import Image from 'next/image'
 
 // Styles
-import styles from "./Modal.module.css";
+import styles from './Modal.module.css'
 
 // Icons
-import closeIcon from "../../public/icons/close.svg";
+import closeIcon from '../../public/icons/close.svg'
 
-export function Modal({ isOpen, title, content, onClose, actions }) {
+export function Modal ({ isOpen, title, content, onClose, actions }) {
   if (!isOpen) {
-    return null;
+    return null
   }
 
   return (
@@ -17,12 +18,12 @@ export function Modal({ isOpen, title, content, onClose, actions }) {
       <div className={styles.modal}>
         <Image
           onClick={e => {
-            let modal = document.querySelector(`.${styles.modalContainer}`);
-            modal.classList.toggle(styles.hidden);
-            onClose();
+            const modal = document.querySelector(`.${styles.modalContainer}`)
+            modal.classList.toggle(styles.hidden)
+            onClose()
           }}
           src={closeIcon}
-          alt="close"
+          alt='close'
           width={20}
           height={20}
         />
@@ -45,5 +46,5 @@ export function Modal({ isOpen, title, content, onClose, actions }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

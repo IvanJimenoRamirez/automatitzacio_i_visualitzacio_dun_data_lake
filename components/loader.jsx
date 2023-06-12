@@ -1,16 +1,16 @@
-import styles from "./loader.module.css"
+import styles from './loader.module.css'
 
-export function Loader ( ) {
-    return (
-        <div className={styles.loader}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    )
+export function Loader () {
+  return (
+    <div className={styles.loader}>
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  )
 }

@@ -1,9 +1,9 @@
 /* Imports */
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 /* Styles */
-import styles from "./Table.module.css";
+import styles from './Table.module.css'
 
 export function Table ({ columns, columnsTranslated, data, actions }) {
   return (
@@ -21,11 +21,13 @@ export function Table ({ columns, columnsTranslated, data, actions }) {
             <tr key={rowIndex}>
               {
                 columns.map((column, colIndex) => (
-                  colIndex < columns.length - 1 ? (
-                    <td key={colIndex}>{row[column.toLowerCase()]}</td>
-                  ) : (
-                    <React.Fragment key={colIndex}></React.Fragment>
-                  )
+                  colIndex < columns.length - 1
+                    ? (
+                      <td key={colIndex}>{row[column.toLowerCase()]}</td>
+                      )
+                    : (
+                      <React.Fragment key={colIndex} />
+                      )
                 ))
             }
               <td className={styles.actions}>
@@ -46,5 +48,5 @@ export function Table ({ columns, columnsTranslated, data, actions }) {
         </tbody>
       </table>
     </div>
-  );
+  )
 };

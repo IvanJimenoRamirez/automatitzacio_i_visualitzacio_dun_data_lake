@@ -43,7 +43,7 @@ describe('Profile page tests', () => {
 
   test('Profile page renders', async () => {
     const dict = await getDictionary(lang)
-    const component = render(
+    const { getByDisplayValue } = render(
       <SessionProvider
         session={{
           user: {
@@ -60,8 +60,7 @@ describe('Profile page tests', () => {
       >
         <ProfileTable lang={lang} dict={dict} styles={styles} />
       </SessionProvider>)
-    await new Promise(resolve => setTimeout(resolve, 600))
-    prettyDOM(component.container)
-    expect(component.container).toHaveTextContent('test@test.com')
+    await new Promise(resolve => setTimeout(resolve, 200))
+    expect(getByDisplayValue('test@test.com')).toBeInTheDocument()
   })
 })

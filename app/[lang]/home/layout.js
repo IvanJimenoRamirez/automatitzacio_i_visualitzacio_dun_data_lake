@@ -3,20 +3,10 @@ import Image from 'next/image'
 import styles from './CommonHome.module.css'
 
 // Components
-import { NavbarButton } from '../../../components/Buttons/NavbarButton'
-import { SignoutButton } from '../../../components/Buttons/SignoutButton'
 import { AuthProvider } from '../../../components/Home/AuthProvider'
-import { NavbarAdmin } from '../../../components/Admin/NavbarAdmin'
 import { LanguageSelector } from '../../../components/Header/LanguageSelector'
 import { UserName } from '../../../components/Header/UserName'
-
-// Icons
-import homeLogo from '../../../public/icons/navbar/home.svg'
-import userLogo from '../../../public/icons/navbar/user.svg'
-import temporalLandingZoneLogo from '../../../public/icons/navbar/temporalLandingZone.svg'
-import landingZoneLogo from '../../../public/icons/navbar/landingZone.svg'
-import formattedZoneLogo from '../../../public/icons/navbar/formattedZone.svg'
-import projectsLogo from '../../../public/icons/navbar/projects.svg'
+import { Navbar } from '../../../components/Navbar/Navbar'
 
 // Logos
 import upcLogo from '../../../public/images/upcLogo.png'
@@ -34,67 +24,9 @@ export default async function RootLayout ({ params: { lang }, children }) {
         </AuthProvider>
         <LanguageSelector dict={dict} />
       </header>
-      <nav id='navbar' className={styles.nav}>
-        <div>
-          <NavbarButton navbarId='navbar' className={styles.active} />
-        </div>
-        <div className={styles.marginTop}>
-          <Link href={`${lang}/home`}>
-            <Image src={homeLogo} alt={dict.navbar.home} width={25} height={25} />
-            <span>
-              {dict.navbar.home}
-            </span>
-          </Link>
-        </div>
-        <div>
-          <Link href={`${lang}/home/temporalLandingZone`}>
-            <Image src={temporalLandingZoneLogo} alt='TLZ' width={25} height={25} />
-            <span>
-              {dict.navbar.tlz}
-            </span>
-          </Link>
-        </div>
-        <div>
-          <Link href={`${lang}/home/landingZone`}>
-            <Image src={landingZoneLogo} alt='LZ' width={25} height={25} />
-            <span>
-              {dict.navbar.lz}
-            </span>
-          </Link>
-        </div>
-        <div>
-          <Link href={`${lang}/home/formattedZone`}>
-            <Image src={formattedZoneLogo} alt='FZ' width={25} height={25} />
-            <span>
-              {dict.navbar.fz}
-            </span>
-          </Link>
-        </div>
-        <div>
-          <Link href={`${lang}/home/projects`}>
-            <Image src={projectsLogo} alt={dict.navbar.projects} width={25} height={25} />
-            <span>
-              {dict.navbar.projects}
-            </span>
-          </Link>
-        </div>
-        <div>
-          <Link href={`${lang}/home/profile`}>
-            <Image src={userLogo} alt={dict.navbar.profile} width={25} height={25} />
-            <span>
-              {dict.navbar.profile}
-            </span>
-          </Link>
-        </div>
-
-        <AuthProvider>
-          <NavbarAdmin adminTranslation={dict.navbar.admin} lang={lang} />
-        </AuthProvider>
-
-        <div>
-          <SignoutButton signoutTranslation={dict.navbar.logout} lang={lang} />
-        </div>
-      </nav>
+      <AuthProvider>
+        <Navbar dict={dict} lang={lang} />
+      </AuthProvider>
       <main className={styles.main}>
         <AuthProvider>
           {children}

@@ -31,6 +31,7 @@
     left: 0;
     margin: 0 auto;
     width: 100%;
+    z-index: 9999;
 }
 
 .modal p {
@@ -96,6 +97,14 @@
     filter: var(--white-filter);
 }
 
+.cancel {
+    background-color: var(--color-quaternary) !important;
+    color: #fff !important;
+}
+
+.cancel:hover {
+    background-color: var(--color-quaternary) !important;
+}
 
 /* Responsive */
 @media screen and (max-width: 768px) {

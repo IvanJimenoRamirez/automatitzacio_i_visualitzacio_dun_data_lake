@@ -38,7 +38,7 @@ export function Modal ({ isOpen, title, content, onClose, actions }) {
             <button
               key={index}
               onClick={action.onClick}
-              className={styles.modalAction}
+              className={[styles.modalAction, action.customStyle].join(' ')}
             >
               {action.label}
             </button>

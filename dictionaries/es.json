@@ -144,9 +144,12 @@
                 "missingDate": "Has de indicar una fecha y hora para programar la ejecución",
                 "startDate": "Fecha de inicio",
                 "repeat": "Repetir cada (segundos)",
-                "response": "Respuesta de la solicitud"
+                "response": "Respuesta de la solicitud",
+                "running": "Ejecutando"
             },
             "parameterErrors": {
+                "title": "Error en los parámetros",
+                "description": "Hay errores en los siguientes parámetros. Revisa los mensajes de error a continuación: ",
                 "parameter": "El parámetro: ",
                 "numeric": " ha de ser numérico",
                 "required": " es obligatorio"
@@ -173,6 +176,7 @@
         }
     },
     "commons": {
+        "close": "Cerrar",
         "notEnoughPermissions": "No tienes suficientes permisos para acceder a esta página",
         "fileDownloaded": "Fichero descargado",
         "success": "Éxito",

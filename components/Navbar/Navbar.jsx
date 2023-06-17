@@ -31,8 +31,6 @@ export function Navbar ({ dict, lang }) {
     if (active !== null) {
       document.querySelector(`#${active}`).classList.toggle(styles.selected)
     }
-    console.log(id)
-    console.log(document.querySelector(`#${id}`))
     setActive(id)
     document.querySelector(`#${id}`).classList.toggle(styles.selected)
   }

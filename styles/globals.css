@@ -6,6 +6,9 @@
     --color-secondary: #457B9D;
     --color-quaternary: #E63946;
 
+    --color-button: #658ec2;
+    --color-button-hover: #5c7ca9;
+
     --color-white: #fff;
     --navbar-hover: #D3E3FD;
 
@@ -17,7 +20,7 @@
 
     --box-shadow-color: rgba(0, 0, 0, 0.182);
 
-    --color-success: #3dcf35;
+    --color-success: #76ce71;
 
     --white-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%);
     --dark-filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%);
@@ -84,6 +87,11 @@ a {
     color: var(--color-quaternary);
 }
 
+button {
+    background-color: var(--color-button) !important;
+    color: #fff !important;
+}
+
 button:hover {
-    background-color: var(--color-secondary) !important;
+    background-color: var(--color-button-hover) !important;
 }

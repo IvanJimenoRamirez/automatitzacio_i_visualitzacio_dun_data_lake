@@ -94,7 +94,7 @@ export function Endpoints ({ dict, id, type, lang }) {
 
   const endpointsList = filteredEndpoints && filteredEndpoints.getList().map((endpoint) => (
     <div id={endpoint.id} key={endpoint.id} className={styles.endpoint}>
-      <div className={styles.endpointTitle} onClick={e => showDetails(e.target, endpoint.id)}>
+      <div className={styles.endpointTitle} onClick={e => showDetails(e.target, endpoint.id)} title={endpoint.summary}>
         <p><strong>{endpoint.route}</strong>  - <span> {endpoint.summary} </span></p>
         <Image className={styles.caretDown} src={caretDownIcon} alt='CaretDown' width={25} height={25} />
         <button onClick={() => handleSelectEndpoint(endpoint.id)}>
@@ -176,6 +176,7 @@ export function Endpoints ({ dict, id, type, lang }) {
                   <option value='POST'>POST</option>
                   <option value='PUT'>PUT</option>
                   <option value='PATCH'>PATCH</option>
+                  <option value='PATCH'>DELETE</option>
                 </select>
               </div>
             </div>

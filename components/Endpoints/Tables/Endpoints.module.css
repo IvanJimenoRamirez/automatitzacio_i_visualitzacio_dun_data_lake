@@ -90,7 +90,7 @@
 }
 
 .endpointTitle button span {
-    color: var(--color-white);
+    color: #fff;
 }
 .endpointTitle button img {
     display: none;

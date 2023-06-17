@@ -144,9 +144,12 @@
                 "missingDate": "Has de seleccionar una data i hora per programar l'execució",
                 "startDate": "Data d'inici",
                 "repeat": "Repetir cada (segons)",
-                "response": "Resposta de la sol·licitud"
+                "response": "Resposta de la sol·licitud",
+                "running": "Executant"
             },
             "parameterErrors": {
+                "title": "Error en els paràmetres",
+                "description": "Hi ha errors en els següents paràmetres. Revisa els missatges d'error a continuació: ",
                 "parameter": "El paràmetre: ",
                 "numeric": " ha de ser numèric",
                 "required": " és requerit"
@@ -173,6 +176,7 @@
         }
     },
     "commons": {
+        "close": "Tancar",
         "notEnoughPermissions": "No tens suficients permisos per accedir a aquesta pàgina",
         "fileDownloaded": "Fitxer descarregat",
         "success": "Èxit",

@@ -130,7 +130,7 @@ export function AdminContent ({ lang, dict }) {
     setModalTitle(title)
     setModalContent(<p>{description}</p>)
     setModalActions([
-      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel },
       {
         label: dict.page.admin.delete,
         onClick: () => {
@@ -161,7 +161,7 @@ export function AdminContent ({ lang, dict }) {
       </form>
     )
     setModalActions([
-      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel },
       {
         label: dict.page.admin.add,
         onClick: () => {
@@ -207,7 +207,7 @@ export function AdminContent ({ lang, dict }) {
       </form>
     )
     setModalActions([
-      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel },
       {
         label: dict.page.admin.edit,
         onClick: () => {
@@ -259,7 +259,7 @@ export function AdminContent ({ lang, dict }) {
       </form>
     )
     setModalActions([
-      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel },
       {
         label: dict.commons.change,
         onClick: () => {
@@ -311,7 +311,7 @@ export function AdminContent ({ lang, dict }) {
       </form>
     )
     setModalActions([
-      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel },
       {
         label: dict.commons.change,
         onClick: () => {
@@ -372,7 +372,8 @@ export function AdminContent ({ lang, dict }) {
           '{}',
           updateUsers
         )
-      }
+      },
+      customStyle: styles.cancel
     }
   ]
   const apiKeysActions = [
@@ -381,6 +382,15 @@ export function AdminContent ({ lang, dict }) {
       icon: permissionsIcon,
       onClick: (apiKey) => {
         permissionsApiKeyModal(apiKey)
+      }
+    },
+    {
+      label: dict.page.admin.copy,
+      icon: copyIcon,
+      onClick: (apiKey) => {
+        navigator.clipboard.writeText(apiKey.api_key)
+        setShowResult(dict.page.admin.manageApiKeys.copySuccess)
+        setTimeout(hideResult, 3000)
       }
     },
     { // permissionsApiKeyModal
@@ -396,16 +406,8 @@ export function AdminContent ({ lang, dict }) {
             '{}',
             updateApiKeys
         )
-      }
-    },
-    {
-      label: dict.page.admin.copy,
-      icon: copyIcon,
-      onClick: (apiKey) => {
-        navigator.clipboard.writeText(apiKey.api_key)
-        setShowResult(dict.page.admin.manageApiKeys.copySuccess + ' ✅')
-        setTimeout(hideResult, 3000)
-      }
+      },
+      customStyle: styles.cancel
     }
   ]
 
@@ -429,7 +431,7 @@ export function AdminContent ({ lang, dict }) {
         body: JSON.stringify(body)
       }).then((res) => {
         if (res.status === 200) {
-          setShowResult(dict.commons.success + ' ✅')
+          setShowResult(dict.commons.success)
           setTimeout(hideResult, 3000)
           callback()
         }
@@ -446,7 +448,7 @@ export function AdminContent ({ lang, dict }) {
         }
       }).then((res) => {
         if (res.status === 200) {
-          setShowResult(dict.commons.success + ' ✅')
+          setShowResult(dict.commons.success)
           setTimeout(hideResult, 3000)
           callback()
         }
@@ -510,7 +512,7 @@ export function AdminContent ({ lang, dict }) {
       }
     }).then((res) => {
       if (res.status === 200) {
-        setShowResult(dict.commons.success + ' ✅')
+        setShowResult(dict.commons.success)
         setTimeout(hideResult, 3000)
         updateApiKeys()
       } else {

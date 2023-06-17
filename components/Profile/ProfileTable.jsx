@@ -49,7 +49,7 @@ export function ProfileTable ({ lang, styles, dict }) {
       </>
     )
     setModalActions([
-      { label: dict.commons.cancel, onClick: () => setModalOpen(false) },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel },
       {
         label: dict.commons.change,
         onClick: () => {

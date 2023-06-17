@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
+import { Modal } from '../Modal/Modal'
 
 // Components
 import { Loader } from '../loader'
@@ -23,18 +24,24 @@ export function EndpointContent ({ id, dict, lang }) {
   const [jobs, setJobs] = useState(false)
 
   // Required parameters
-  const [url, setUrl] = useState('')
-  const [bodyParams, setBodyParams] = useState({})
-  const [formData, setFormData] = useState(false)
-  const [queryParams, setQueryParams] = useState({})
-  const [pathParams, setPathParams] = useState({})
+  let finalUrl = ''
+  let finalBodyParams = {}
+  let finalFormData = {}
+  let finalQueryParams = {}
+  let finalPathParams = {}
 
   // Error handling
   const [errorMessage, setErrorMessage] = useState(false)
   const [errorStatus, setErrorStatus] = useState(false)
 
   const [showResult, setShowResult] = useState(false)
-  const [isScheduled, setIsScheduled] = useState(false)
+  let isScheduled = false
+
+  // modal
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalTitle, setModalTitle] = useState('')
+  const [modalContent, setModalContent] = useState(null)
+  const [modalActions, setModalActions] = useState([])
 
   const { data: session } = useSession()
 
@@ -82,7 +89,7 @@ export function EndpointContent ({ id, dict, lang }) {
     let url = endpoint.route
 
     let isValid = true
-    let errorMsg = ''
+    const errorMsg = []
 
     endpoint.parameters.forEach((param, index) => {
       if (param.location === 'path') {
@@ -101,25 +108,110 @@ export function EndpointContent ({ id, dict, lang }) {
 
       if (param.required && params[index].value === '') {
         isValid = false
-        errorMsg = `${dict.page.endpoint.parameterErrors.parameter} ${param.name} ${dict.page.endpoint.parameterErrors.required}`
+        errorMsg.push(`${dict.page.endpoint.parameterErrors.parameter} '${param.name}' ${dict.page.endpoint.parameterErrors.required}`)
       }
       if (param.type === 'integer' && isNaN(params[index].value)) {
         isValid = false
-        errorMsg = `${dict.page.endpoint.parameterErrors.parameter} ${param.name} ${dict.page.endpoint.parameterErrors.numeric}`
+        errorMsg.push(`${dict.page.endpoint.parameterErrors.parameter} '${param.name}' ${dict.page.endpoint.parameterErrors.numeric}`)
       }
     })
 
-    if (!isValid) return alert(errorMsg)
+    if (!isValid) {
+      setModalTitle(dict.page.endpoint.parameterErrors.title)
+      setModalContent(
+        <p>
+          {dict.page.endpoint.parameterErrors.description}
+          <br />
+          <ul>
+            {
+            errorMsg.map((msg) => (<li key={msg}><span>{msg}<br /></span></li>))
+          }
+          </ul>
+        </p>
+      )
+      setModalActions([
+        {
+          label: dict.commons.close,
+          onClick: () => setModalOpen(false)
+        }
+      ])
+      setModalOpen(true)
+      return
+    }
 
     if (queryParams.length > 0) url = `${url}?${queryParams.join('&')}`
-    setUrl(url)
-    setBodyParams(bodyParams)
-    console.log(formData)
-    if (Object.keys(formData).length > 0) setFormData(formData)
-    setQueryParams(qParams)
-    setPathParams(pathParams)
+    finalUrl = url
+    finalBodyParams = bodyParams
+    if (Object.keys(formData).length > 0) finalFormData = formData
+    finalQueryParams = qParams
+    finalPathParams = pathParams
 
-    toggleModal()
+    createExecuteEndpointModal()
+  }
+
+  const createExecuteEndpointModal = () => {
+    setModalTitle(dict.page.endpoint.execute.confirm)
+    setModalContent(
+      <div className={styles.modalBody}>
+        <div
+          id='loaderContainer'
+          className={[styles.loader, styles.hidden].join(' ')}
+        >
+          <Loader />
+        </div>
+        <p>
+          <strong>URL: </strong> {finalUrl}
+        </p>
+        <p>
+          <strong>{dict.page.endpoint.execute.method}: </strong>{' '}
+          {endpoint && endpoint.method.toUpperCase()}
+        </p>
+        <p>
+          <strong>Body: </strong>
+        </p>
+        {
+        (Object.keys(finalFormData).length === 0)
+          ? (
+            <pre>{JSON.stringify(finalBodyParams, undefined, 2)}</pre>
+            )
+          : (
+            <pre>{JSON.stringify(finalFormData, undefined, 2)}</pre>
+            )
+        }
+        <div className={jobs ? styles.hidden : ''}>
+          <p>
+            <strong>{dict.page.endpoint.execute.schedule}:</strong>{' '}
+            <input
+              id='scheduleCheckbox'
+              type='checkbox'
+              onChange={(e) => handleShowSchedule(e.target.checked)}
+            />
+          </p>
+
+          <div
+            className={[styles.scheduleContainer, styles.hidden].join(' ')}
+          >
+            <hr />
+            <p>
+              <strong>{dict.page.endpoint.execute.startDate}: </strong>{' '}
+              <input type='datetime-local' />{' '}
+            </p>
+            <p>
+              <strong>{dict.page.endpoint.execute.repeat}</strong>{' '}
+              <input type='number' />{' '}
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+    setModalActions([
+      {
+        label: dict.page.endpoint.execute.execute,
+        onClick: runEndpointOrSchedule
+      },
+      { label: dict.commons.cancel, onClick: () => setModalOpen(false), customStyle: styles.cancel }
+    ])
+    setModalOpen(true)
   }
 
   const toggleModal = () => {
@@ -138,7 +230,9 @@ export function EndpointContent ({ id, dict, lang }) {
     ).value
 
     // If the schedule time is empty, return
-    if (scheduleTime === '') { return alert(dict.page.endpoint.execute.missingDate) }
+    if (scheduleTime === '') {
+      return alert(dict.page.endpoint.execute.missingDate)
+    }
 
     // If the seconds are empty, set it to 0
     if (seconds === '') seconds = 0
@@ -147,9 +241,11 @@ export function EndpointContent ({ id, dict, lang }) {
     const endpointId = endpoint.id
 
     // Merge the bodyParams and queryParams and pathParams
-    const params = { ...bodyParams, ...queryParams, ...pathParams }
+    const params = { ...finalBodyParams, ...finalQueryParams, ...finalPathParams }
 
     // Toggle the loader
+    setModalTitle(dict.page.endpoint.execute.running + '...')
+    setModalActions([])
     toggleLoader()
 
     // Send the request to the API
@@ -179,15 +275,21 @@ export function EndpointContent ({ id, dict, lang }) {
       })
   }
 
+  const runEndpointOrSchedule = () => {
+    if (isScheduled) scheduleEndpoint()
+    else runEndpoint()
+  }
+
   const runEndpoint = () => {
+    setModalTitle(dict.page.endpoint.execute.running + '...')
+    setModalActions([])
     toggleLoader()
 
-    const endpointUrl = `${process.env.NEXT_PUBLIC_API_URL + url}`
+    const endpointUrl = `${process.env.NEXT_PUBLIC_API_URL + finalUrl}`
+
+    console.log(finalUrl)
 
     const handleCatch = (err) => {
-      setErrorMessage(err.message)
-      setErrorStatus(500)
-
       showEndpointResult(err.message, 500)
     }
 
@@ -231,15 +333,15 @@ export function EndpointContent ({ id, dict, lang }) {
     }
 
     if (['PUT', 'POST', 'PATCH'].includes(endpoint.method.toUpperCase())) {
-      if (formData) {
+      if (Object.keys(finalFormData).length > 0) {
         const fData = new FormData()
-        Object.keys(formData).forEach((key) => {
-          console.log(key, formData[key])
-          fData.append(key, formData[key])
+        Object.keys(finalFormData).forEach((key) => {
+          console.log(key, finalFormData[key])
+          fData.append(key, finalFormData[key])
         })
         requestOptions.body = fData
       } else {
-        requestOptions.body = JSON.stringify(bodyParams)
+        requestOptions.body = JSON.stringify(finalBodyParams)
         if (requestOptions.body === '{}') delete requestOptions.body
         else requestOptions.headers['Content-Type'] = 'application/json'
       }
@@ -260,11 +362,6 @@ export function EndpointContent ({ id, dict, lang }) {
 
   const showEndpointResult = (data, status) => {
     setShowResult(!showResult)
-
-    const modalBody = document.querySelector(`.${styles.modalBody}`)
-    const title = document.querySelector(`.${styles.modalTitle}`)
-    const result = document.createElement('div')
-
     let prettyData
     try {
       // Try to parse the data
@@ -275,20 +372,30 @@ export function EndpointContent ({ id, dict, lang }) {
       prettyData = JSON.stringify(data, undefined, 2)
     }
 
-    title.innerHTML = `<p><strong>${dict.page.endpoint.execute.response}</strong></p>`
-
-    result.classList.add(styles.result)
-    result.innerHTML = `<p>
-                <strong>${dict.commons.status}:</strong> <span style="${
-      status >= 200 && status <= 200 ? 'color:#3dcf35' : 'color:#E63946'
-    }">${status}</span>
-            </p>
-            <p>
-                <strong>${dict.commons.result}:</strong>
-                <pre>${prettyData}</pre>
-            </p>`
-
-    modalBody.innerHTML = result.outerHTML
+    setModalTitle(dict.page.endpoint.execute.response)
+    setModalContent(
+      <div className={styles.result}>
+        <p>
+          <strong>{dict.commons.status}:</strong>{' '}
+          <span
+            style={
+              status >= 200 && status <= 200
+                ? { color: '#3dcf35' }
+                : { color: '#E63946' }
+            }
+          >
+            {status}
+          </span>
+        </p>
+        <p>
+          <strong>{dict.commons.result}:</strong>
+          <pre>{prettyData}</pre>
+        </p>
+      </div>
+    )
+    setModalActions([
+      { label: dict.commons.close, onClick: () => setModalOpen(false) }
+    ])
   }
 
   const handleShowSchedule = (checked) => {
@@ -296,7 +403,7 @@ export function EndpointContent ({ id, dict, lang }) {
       `.${styles.scheduleContainer}`
     )
     scheduleContainer.classList.toggle(styles.hidden)
-    setIsScheduled(checked)
+    isScheduled = checked
   }
 
   const handleDeleteJob = () => {
@@ -325,6 +432,13 @@ export function EndpointContent ({ id, dict, lang }) {
 
   return (
     <div>
+      <Modal
+        isOpen={modalOpen}
+        title={modalTitle}
+        content={modalContent}
+        onClose={() => setModalOpen(false)}
+        actions={modalActions}
+      />
       {errorMessage ? <Error status={errorStatus} message={errorMessage} action={() => { setErrorMessage(false); setErrorStatus(false) }} dict={dict} lang={lang} /> : ''}
       <div className={[styles.modalContainer, styles.hidden].join(' ')}>
         <div className={styles.modal}>
@@ -339,68 +453,6 @@ export function EndpointContent ({ id, dict, lang }) {
             <p>
               <strong>{dict.page.endpoint.execute.confirm}</strong>
             </p>
-          </div>
-          <div className={styles.modalBody}>
-            <div
-              id='loaderContainer'
-              className={[styles.loader, styles.hidden].join(' ')}
-            >
-              <Loader />
-            </div>
-            <p>
-              <strong>URL: </strong> {url}
-            </p>
-            <p>
-              <strong>{dict.page.endpoint.execute.method}: </strong>{' '}
-              {endpoint && endpoint.method.toUpperCase()}
-            </p>
-            <p>
-              <strong>Body: </strong>
-            </p>
-            {!formData
-              ? (
-                <pre>{JSON.stringify(bodyParams, undefined, 2)}</pre>
-                )
-              : (
-                <pre>{JSON.stringify(formData, undefined, 2)}</pre>
-                )}
-            <div className={jobs ? styles.hidden : ''}>
-              <p>
-                <strong>{dict.page.endpoint.execute.schedule}:</strong>{' '}
-                <input
-                  type='checkbox'
-                  onChange={(e) => handleShowSchedule(e.target.checked)}
-                />
-              </p>
-
-              <div
-                className={[styles.scheduleContainer, styles.hidden].join(' ')}
-              >
-                <hr />
-                <p>
-                  <strong>{dict.page.endpoint.execute.startDate}: </strong>{' '}
-                  <input type='datetime-local' />{' '}
-                </p>
-                <p>
-                  <strong>{dict.page.endpoint.execute.repeat}</strong>{' '}
-                  <input type='number' />{' '}
-                </p>
-              </div>
-            </div>
-            <div className={styles.buttonsContainer}>
-              <button
-                onClick={() => {
-                  if (isScheduled) {
-                    scheduleEndpoint()
-                  } else {
-                    runEndpoint()
-                  }
-                }}
-              >
-                {dict.page.endpoint.execute.execute}
-              </button>
-              <button onClick={toggleModal}>{dict.commons.cancel}</button>
-            </div>
           </div>
         </div>
       </div>

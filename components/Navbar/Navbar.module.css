@@ -20,7 +20,7 @@
 
 .nav div:first-child button {
     border: none;
-    background: none;
+    background: none !important;
     cursor: pointer;
     height: 40px;
     width: 40px;

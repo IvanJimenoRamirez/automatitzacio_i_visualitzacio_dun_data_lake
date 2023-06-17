@@ -32,7 +32,7 @@ export function Table ({ columns, columnsTranslated, data, actions }) {
             }
               <td className={styles.actions}>
                 {actions.map((action, actionIndex) => (
-                  <button key={actionIndex} onClick={() => action.onClick(row)}>
+                  <button key={actionIndex} onClick={() => action.onClick(row)} className={action.customStyle}>
                     <span>{action.label}</span>
                     <Image
                       src={action.icon}

@@ -144,9 +144,12 @@
                 "missingDate": "You must select a date and hour to schedule the execution",
                 "startDate": "Start date",
                 "repeat": "Repeat every (seconds)",
-                "response": "Response to the request"
+                "response": "Response to the request",
+                "running": "Running"
             },
             "parameterErrors": {
+                "title": "Parameter errors",
+                "description": "There are errors in the following parameters. Check the error messages below:",
                 "parameter": "The parameter: ",
                 "numeric": " must be numeric",
                 "required": " is required"
@@ -173,6 +176,7 @@
         }
     },
     "commons": {
+        "close": "Close",
         "notEnoughPermissions": "You do not have enough permissions to access this page",
         "fileDownloaded": "File downloaded",
         "success": "Success",

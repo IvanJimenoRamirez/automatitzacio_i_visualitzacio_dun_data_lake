@@ -25,6 +25,8 @@ export function LanguageSelector ({ dict }) {
     '--color-primary': '#1D3557',
     '--color-secondary': '#457B9D',
     '--color-quaternary': '#E63946',
+    '--color-button': '#658ec2',
+    '--color-button-hover': '#5c7ca9',
     '--color-white': '#fff',
     '--navbar-hover': '#D3E3FD',
     '--color-hard-grey': '#333',
@@ -32,7 +34,6 @@ export function LanguageSelector ({ dict }) {
     '--color-low-grey': '#ddd',
     '--color-body': '#F5F8FC',
     '--box-shadow-color': 'rgba(0, 0, 0, 0.182)',
-    '--color-success': '#3dcf35',
     '--white-filter':
       'invert(100%) sepia(100%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%)',
     '--dark-filter':
@@ -43,6 +44,8 @@ export function LanguageSelector ({ dict }) {
     '--color-primary': '#FFF',
     '--color-secondary': '#A8DADC',
     '--color-quaternary': '#E63946',
+    '--color-button': '#6c6d6e',
+    '--color-button-hover': '#969696',
     '--color-white': '#1E2029',
     '--navbar-hover': '#242630',
     '--color-hard-grey': '#333',
@@ -50,7 +53,6 @@ export function LanguageSelector ({ dict }) {
     '--color-low-grey': '#ddd',
     '--color-body': '#17171F',
     '--box-shadow-color': 'rgba(255, 255, 255, 0.182)',
-    '--color-success': '#3dcf35',
     '--white-filter':
       'invert(0%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%)',
     '--dark-filter':

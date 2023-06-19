@@ -113,6 +113,10 @@
     word-break: break-all;
 }
 
+.endpointDetails strong {
+    color: var(--color-grey);
+}
+
 
 /* --> Filters */
 

@@ -36,13 +36,11 @@ export function Zone ({ name, description, id, dict }) {
                     <thead>
                       <tr>
                         <th>{dict.page.home.zones.sources}</th>
-                        <th>{dict.page.home.zones.data}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>{statistics.getTotalSources()}</td>
-                        <td>{statistics.getTotalMetadataCount()}</td>
                       </tr>
                     </tbody>
                   </table>

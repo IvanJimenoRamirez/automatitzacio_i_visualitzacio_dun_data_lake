@@ -489,6 +489,11 @@ export function EndpointContent ({ id, dict, lang }) {
                         <strong>{param.name}:</strong> {param.description}{' '}
                         <span>
                           [{param.location}][{param.type}]
+                          {
+                            param.required
+                              ? <span className={styles.required}>[{dict.page.endpoint.required}]</span>
+                              : ''
+                          }
                         </span>{' '}
                       </p>
                     </div>

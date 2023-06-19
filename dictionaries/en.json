@@ -50,7 +50,7 @@
                 "description": "Registered data sources",
                 "columns": {
                     "name": "Name",
-                    "providedData": "Provided Data"
+                    "providedData": "Provided datasets"
                 }
             }
         },
@@ -136,6 +136,7 @@
             "title": "Execute the endpoint",
             "description": "Description",
             "configuration": "Configure the required parameters",
+            "required": "required",
             "execute": {
                 "execute":"Execute",
                 "confirm": "Are you sure you want to execute the endpoint?",

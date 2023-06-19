@@ -50,7 +50,7 @@
                 "description": "Fonts de dades registrades",
                 "columns": {
                     "name": "Nom",
-                    "providedData": "Dades subministrades"
+                    "providedData": "Conjunt de dades subministrats"
                 }
             }
         },
@@ -136,6 +136,7 @@
             "title": "Executa l'endpoint",
             "description": "Descripció",
             "configuration": "Configuració dels paràmetres requerits",
+            "required": "requerit",
             "execute": {
                 "execute":"Executar",
                 "confirm": "Estàs segur/a de voler executar l'endpoint?",

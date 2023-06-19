@@ -50,7 +50,7 @@
                 "description": "Fuentes de datos registradas",
                 "columns": {
                     "name": "Nombre",
-                    "providedData": "Datos suministrados"
+                    "providedData": "Conjuntos de datos suministrados"
                 }
             }
         },
@@ -136,6 +136,7 @@
             "title": "Ejecutar el endpoint",
             "description": "Descripción",
             "configuration": "Configuración de los parámetros requeridos",
+            "required": "obligatorio",
             "execute": {
                 "execute":"Ejecutar",
                 "confirm": "¿Estás seguro de querer ejecutar el endpoint?",

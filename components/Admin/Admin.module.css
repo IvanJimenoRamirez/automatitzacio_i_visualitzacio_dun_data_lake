@@ -1,0 +1,129 @@
+.relative {
+    position: relative;
+}
+
+.refreshEndpoints {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.refreshEndpoints button {
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal {
+    position: absolute; 
+    top: 20px;
+    left: 0;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 9999;
+}
+
+.modal p {
+    margin: 0 auto;
+    width: 300px;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.success p{
+    background-color: var(--color-success);
+    color: var(--color-white);
+}
+
+.error p{
+    background-color: var(--color-quaternary);
+    color: var(--color-white);
+}
+/* CARDS */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
+    border-radius: 5px;
+
+    max-height: 400px;
+}
+
+.cardTitle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.cardTitle button {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-family: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardTitle button img {
+    display: none;
+    filter: var(--white-filter);
+}
+
+.cancel {
+    background-color: var(--color-quaternary) !important;
+    color: #fff !important;
+}
+
+.cancel:hover {
+    background-color: var(--color-quaternary) !important;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .actions button img,
+    .cardTitle button img {
+        display: block;
+    }
+    .actions button span,
+    .cardTitle button span {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 445px) {
+    .cardTitle h5 {
+        margin-top: 50px;
+    }
+    .cardTitle button {
+        top: 15px;
+        right:unset;
+    }
+}

@@ -1,0 +1,17 @@
+.zonesWrapper {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .zonesWrapper {
+        flex-direction: column;
+    }
+    .zonesWrapper div {
+        width: 100%;
+    }
+}

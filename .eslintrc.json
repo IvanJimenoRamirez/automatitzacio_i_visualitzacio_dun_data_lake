@@ -1,3 +1,11 @@
 {
-  "extends": ["./node_modules/standard/eslintrc.json", "next/core-web-vitals"]
+  "extends": ["./node_modules/standard/eslintrc.json", "next/core-web-vitals"],
+  "rules": {
+    "quotes": 1,
+    "space-in-parens": 1,
+    "react/jsx-tag-spacing": 1,
+    "indent": 1,
+    "semi": 1,
+    "react-hooks/exhaustive-deps": 0
+  }
 }

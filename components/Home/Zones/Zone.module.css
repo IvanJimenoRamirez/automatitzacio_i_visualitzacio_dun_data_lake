@@ -1,0 +1,30 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    height: 100%;
+    width: 30%;
+
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
+    
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 25px;
+}
+
+.card h4 {
+    margin-bottom: 0;
+}
+
+.statisticsWrapper {
+    width: 90%;
+}
+
+.statisticsWrapper table {
+    width: 100%;
+    border-collapse: collapse;
+}

@@ -1,0 +1,41 @@
+.modalError {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--modal-background);
+    z-index: 999;
+}
+
+.modalError div {
+    width: 50%;
+    height: auto;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+}
+
+
+.modalError img {
+    filter: var(--dark-filter);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.error {
+    color: var(--color-quaternary);
+}

@@ -1,0 +1,278 @@
+.endpointsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+/* --> Endpoints */
+
+.endpointsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    height: 100%;
+    width: 65%;
+
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
+    border-radius: 5px;
+}
+
+/* Item without being active */
+
+.endpoint {
+    width: 100%;
+    transition: height 0.2s ease-in-out;
+}
+
+/* Item header */
+
+.endpointTitle {
+    padding: 0 20px;
+
+    position: relative;
+    width: calc(100% - 40px);
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.endpointTitle p {
+    max-width: calc(100% - 180px);
+    margin: 0;
+    font-weight: 500;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.endpointTitle span {
+    color: var(--color-grey);
+    font-weight: 400;
+}
+
+.caretDown {
+    filter: var(--dark-filter);
+    user-select: none;
+}
+
+.endpointTitle img.caretDown {
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.endpointTitle img.caretDown.active {
+    transform: rotate(180deg);
+}
+
+.endpointTitle button {
+    position: absolute;
+    right: 20px;
+
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+
+    font-family: inherit;
+}
+
+.endpointTitle button span {
+    color: #fff;
+}
+.endpointTitle button img {
+    display: none;
+}
+
+/* Item details */
+.endpointDetails {
+    opacity: 0;
+    padding: 10px 20px;
+    max-height: 0px;
+
+    transition: all 0.1s ease-in-out;
+}
+.endpointDetails.active {
+    max-height: 5000px;
+    opacity: 1;
+}
+
+.endpointDetails span {
+    word-break: break-all;
+}
+
+.endpointDetails strong {
+    color: var(--color-grey);
+}
+
+
+/* --> Filters */
+
+.filtersContainer {
+    height: 100%;
+    width: 30%;
+
+    text-align: center;
+
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
+    border-radius: 5px;
+}
+.filtersContainer h4 {
+    margin-bottom: 10px;
+}
+
+/* Wrapper for the filter elements */
+.filtersWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtersWrapper p {
+    width: 95%;
+}
+
+/* Search filter */
+.searchWrapper {
+    width: 90%;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+
+    background-color: #fff;
+
+    cursor: text;
+}
+
+.searchWrapper input {
+    width: calc(100% - 55px);
+    padding: 0.5rem 0.5rem;
+
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+}
+
+.searchWrapper input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-white) inset !important;
+    background-color: transparent !important;
+  }
+
+.searchWrapper input:focus {
+    outline: none;
+}
+
+.searchWrapper img {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+}
+
+/* Filter selectors */
+.filterSelectors {
+    width: 90%;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.filterSelectors div {
+    width: 150px;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filterSelectors div select {
+    padding: 0.5rem 0.2rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Filter button */
+.filtersWrapper button {
+    cursor: pointer;
+
+    margin: 10px 0px 25px 0px;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    font-family: inherit;
+}
+
+
+/* --> Responsive */
+
+@media screen and (max-width: 768px) {
+
+    /* --> Responsive endpoints*/
+    .endpointsWrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .endpointsContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    .endpointsContainer h4 {
+        text-align: center;
+    }
+
+    .endpointTitle button{ 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 15px;
+        width: 40px;
+    }
+    .endpointTitle button span {
+        display: none;
+    }
+    .endpointTitle button img {
+        display: block;
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(39deg) brightness(106%) contrast(102%);
+    }
+
+    .endpointTitle p {
+        max-width: calc(100% - 70px);
+    }
+
+    /* --> Responsice filters */
+
+    .filtersContainer {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+}

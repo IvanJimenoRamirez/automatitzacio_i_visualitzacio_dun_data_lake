@@ -1,0 +1,314 @@
+.endpointWrapper {
+    position: relative;
+
+    width: 90%;
+    height: auto;
+
+    margin: 0 auto;
+    padding: 20px 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-white);
+    
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+}
+/* Job status */
+.jobWrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: auto;
+
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-success);
+}
+
+.jobWrapper img {
+    filter: var(--dark-filter);
+    cursor:pointer;
+}
+
+/*  Endpoint title */
+.endpointWrapper h4 {
+    text-align: center;
+}
+
+/*  Endpoint params */
+.endpointParams {
+    width: 100%;
+}
+.paramWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 200px);
+    margin: 0 auto;
+}
+.paramDescription {
+    display: flex;
+    align-items: center;
+    width: 45%;
+}
+
+.paramDescription span {
+    color: var(--color-grey);
+}
+
+.inputContainer {
+    color: #000;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fileInputContainer,
+.inputContainer input {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid var(--color-low-grey);
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    color: var(--color-hard-grey);
+}
+
+.fileInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    width: calc(100% - 22px);
+}
+
+.fileInputContainer label{
+    cursor: pointer;
+    width: 100%;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fileInputContainer label:first-child {
+    border-right: 1px solid var(--color-low-grey);
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+}
+
+.fileInputContainer input[type="file"] {
+    display: none;
+}
+
+/*  Endpoint send */
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.buttonContainer button {
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+/* Modal */
+.modalContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--modal-background);
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
+    opacity: 1;
+    transition-property: opacity, z-index;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.modalContainer.hidden {
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal {
+    width: 50%;
+    height: auto;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+}
+
+.modalTitle,
+.modalBody {
+    position:relative;
+    width: 100%;
+}
+.modalBody p {
+    word-break: break-all;
+}
+
+#greenStatus {
+    color: var(--color-success);
+} 
+
+#redStatus {
+    color: var(--color-quaternary);
+}
+
+.result pre {
+    overflow: auto;
+    max-height: 60vh;
+}
+
+.loader {
+    position: absolute;
+
+    background-color: var(--color-white);
+
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    filter: var(--dark-filter);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.buttonsContainer {
+    margin-top: 20px 0 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.buttonsContainer button {
+    margin: 0 10px;
+
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.buttonsContainer button:last-child {
+    background-color: var(--color-quaternary) !important;
+}
+
+.scheduleContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.scheduleContainer hr {
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid var(--color-low-grey);
+}
+.scheduleContainer p {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+}
+.scheduleContainer p input {
+    width: 190px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid var(--color-low-grey);
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    color: var(--color-hard-grey);
+}
+.scheduleContainer.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.cancel {
+    background-color: var(--color-quaternary) !important;
+    color: #fff !important;
+}
+
+.cancel:hover {
+    background-color: var(--color-quaternary) !important;
+}
+
+/*  Responsive */
+
+@media screen and (max-width: 768px) {
+    .paramWrapper {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .paramDescription {
+        width: 85%;
+    }
+    .inputContainer {
+        width: 85%;
+    }
+    .scheduleContainer p {
+        flex-direction: column;
+    }
+}

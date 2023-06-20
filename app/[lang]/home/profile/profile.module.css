@@ -1,0 +1,214 @@
+.profileWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 60%;
+
+    box-shadow: 0 1px 2px 0 var(--box-shadow-color);
+    border-radius: 5px;
+}
+
+.profileContainer div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    margin: 10px 0;
+}
+
+.profileContainer div span {
+    width: 50%;
+}
+
+.profileContainer div input {
+    width: 50%;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 5px;
+    
+    outline: none;
+}
+
+.profileContainer button {
+    margin: 20px 0;
+
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+/* Modal */
+.modalContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
+    opacity: 1;
+    transition-property: opacity, z-index;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.modalContainer.hidden {
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal {
+    width: 50%;
+    height: auto;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+}
+
+.modalTitle,
+.modalBody {
+    position:relative;
+    width: 100%;
+}
+
+.loader {
+    position: absolute;
+
+    background-color: var(--color-white);
+
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    filter: var(--dark-filter);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.modalBody form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.modalBody form div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.modalBody form div label {
+    width: 40%;
+}
+.modalBody form div input {
+    width: 40%;
+    margin: 0 auto;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.modalBody form div  input:focus {
+    outline-color: var(--color-primary);
+}
+
+.modalBody form button {
+    margin: 20px 0 10px 0;
+
+    cursor: pointer;
+    padding: 5px 1rem;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.cancel {
+    background-color: var(--color-quaternary) !important;
+    color: #fff !important;
+}
+
+.cancel:hover {
+    background-color: var(--color-quaternary) !important;
+}
+
+@media screen and (max-width: 768px) {
+    .profileContainer {
+        width: 100%;
+    }
+    .profileContainer div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profileContainer div span,
+    .profileContainer div input {
+        width: 100%;
+    }
+
+    .modalBody form div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    .modalBody form div label {
+        width: 100%;
+    }
+    .modalBody form div input {
+        width: 90%;
+    }
+}
